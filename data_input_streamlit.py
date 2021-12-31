@@ -7,3 +7,5 @@ number = st.number_input("Enter number", 0, 25, 6, 2)
 
 my_date = st.date_input("Select date") 
 st.write(my_date)
+
+vol_1 = st.number_input('Enter vol[mV]')
