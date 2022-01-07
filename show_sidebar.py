@@ -23,7 +23,7 @@ source = pd.DataFrame({
 })
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
-  x='x',
+  alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
   y='f(x)',
 )
 
