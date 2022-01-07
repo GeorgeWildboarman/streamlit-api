@@ -16,6 +16,18 @@ y1=st.sidebar.text_input('Input Y1 here',10)
 y2=st.sidebar.text_input('Input Y2 here',20)
 density=st.sidebar.text_input('Input Model Density contrast here (background - body)',2000)
 
+x = np.arange(100)
+source = pd.DataFrame({
+  'x': x,
+  'f(x)': np.sin(x / 5)
+})
+
+alt.Chart(source).mark_line().encode(
+    x='x',
+    y='f(x)'
+)
+
+st.altair_chart(c)
 
 # x1=float(x1)
 # x2=float(x2)
