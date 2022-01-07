@@ -22,9 +22,9 @@ source = pd.DataFrame({
   'f(x)': np.sin(x / 5)
 })
 
-alt.Chart(source).mark_line().encode(
-    x='x',
-    y='f(x)'
+c = alt.Chart(source).mark_line().encode(
+  x='x',
+  y='f(x)',
 )
 
 st.altair_chart(c)
