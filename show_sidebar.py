@@ -28,6 +28,7 @@ c = alt.Chart(source,width=600,height=400).mark_line().encode(
 )
 
 st.altair_chart(c)
+h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 
 # x1=float(x1)
 # x2=float(x2)
