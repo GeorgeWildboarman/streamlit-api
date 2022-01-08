@@ -49,7 +49,7 @@ h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 col1, col2, col3 = st.columns(3)
 
 with col1:
-  st.header('CH1')
+#   st.header('CH1')
   vol_per_div_ch1 = st.selectbox('VOLTS/DIV (CH1)',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
@@ -57,7 +57,7 @@ with col1:
   vol = vol_per_div_ch1
 
 with col2:
-  st.header('CH2')
+#   st.header('CH2')
   vol_per_div_ch2 = st.selectbox('VOLTS/DIV (CH2)',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
@@ -65,7 +65,7 @@ with col2:
   vol = vol_per_div_ch2 
   
 with col3:
-  st.header('TIME')
+#   st.header('TIME')
   time_per_div0 = st.selectbox('TIME/DIV',
                                ('25ms', '10ms', '5ms', '2.5ms', '1ms', '500μs', '250μs', '100μs', '50μs', '25μs', '10μs', '5μs'),
                                4,
