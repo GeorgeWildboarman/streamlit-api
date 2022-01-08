@@ -53,6 +53,17 @@ df_vol = pd.DataFrame({
   'val': [5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02],
 })
 
+dict_vol ={
+  '100mV': 0.1,
+  '1V': 1.0,
+  '200mV': 0.2,
+  '20mV': 0.02,
+  '2V': 2.0,
+  '500mV': 0.5,
+  '50mV': 0.05,
+  '5V': 5.0
+}
+
 with col1:
 #   st.header('CH1')
   vol_ind = st.selectbox('VOLTS/DIV (CH1)', df_vol, 2)
