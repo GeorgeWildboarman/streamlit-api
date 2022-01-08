@@ -58,7 +58,7 @@ dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50
 with col1:
 #   st.header('CH1')
   vol_ind = st.selectbox('VOLTS/DIV (CH1)', dict_vol, 2)
-  vol_per_div_ch1 = dict.get(vol_ind)
+  vol_per_div_ch1 = dict_vol.get(vol_ind)
   st.write(vol_per_div_ch1)
 
 with col2:
