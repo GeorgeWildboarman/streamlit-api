@@ -23,7 +23,7 @@ time_per_div = 1.0e-4
 fq = float(x1)
 x2 = float(x2)
 # omega = 2*np.pi*fq/time_per_div/100
-omega = 2*np.pi/5
+omega = 2*np.pi/100*5
 # omega = 0.2
 
 source = pd.DataFrame({
