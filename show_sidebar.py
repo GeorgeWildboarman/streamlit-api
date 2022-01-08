@@ -50,7 +50,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
   st.header('CH1')
-  vol_per_div_ch1 = st.selectbox('CH1 VOLTS/DIV',
+  vol_per_div_ch1 = st.selectbox('VOLTS/DIV (CH1)',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
                                 )
@@ -58,7 +58,7 @@ with col1:
 
 with col2:
   st.header('CH2')
-  vol_per_div_ch2 = st.selectbox('CH2 \rVOLTS/DIV',
+  vol_per_div_ch2 = st.selectbox('VOLTS/DIV (CH2)',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
                                 )
