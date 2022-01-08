@@ -55,13 +55,15 @@ with col1:
                                  2,
                                 )
 
+
 with col2:
   st.header('CH2')
   vol_per_div_ch2 = st.selectbox('VOLTS/DIV',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
                                 )
-
+  vol = vol_per_div_ch2 
+  
 with col3:
   st.header('TIME')
   time_per_div0 = st.multiselect('TIME/DIV',
