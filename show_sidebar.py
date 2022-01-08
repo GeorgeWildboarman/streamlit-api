@@ -76,7 +76,7 @@ with col3:
 #   st.header('TIME')
   time_ind = st.selectbox('TIME/DIV', dict_time, 4)
   time_per_div1 = dict_time.get(time_ind)
-  st.write(time_pre_div1)
+  st.write(time_per_div1)
   
   
 # x1=float(x1)
