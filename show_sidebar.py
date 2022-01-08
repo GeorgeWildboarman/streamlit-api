@@ -10,7 +10,6 @@ st.title('Oscilloscope')
 xp = np.linspace(0,100,100)
 zp = np.zeros_like(xp)
 
-x = np.arange(100)
 
 st.sidebar.title('Function Generator')
 x1=st.sidebar.text_input('Frequency [Hz]',10000)
@@ -20,6 +19,13 @@ x2=st.sidebar.text_input('Amp Voltage [V]',2)
 # density=st.sidebar.text_input('Input Model Density contrast here (background - body)',2000)
 
 time_per_div = 1.0e-4
+point_per_div = 25
+total_div = 8
+time_per_point = time_per_div / point_per_div
+total_point = total_div * point_per_div
+
+x = np.arange(total_point)
+
 fq = float(x1)
 x2 = float(x2)
 # omega = 2*np.pi*fq/time_per_div/100
