@@ -54,7 +54,12 @@ df_vol = pd.DataFrame({
 })
 
 dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
-
+dict_time = {'25ms': 2.5e-2, '10ms': 1e-2, '5ms': 5e-3, 
+             '2.5ms': 2.5e-3, '1ms': 1e-3, '500μs': 5e-4, 
+             '250μs': 2.5e-4, '100μs': 1e-4, '50μs': 5e-5, 
+             '25μs': 2.5e-5, '10μs': 1e-5, '5μs': 5e-6
+            }
+                          
 with col1:
 #   st.header('CH1')
   vol_ind = st.selectbox('VOLTS/DIV (CH1)', dict_vol, 2)
@@ -63,18 +68,15 @@ with col1:
 
 with col2:
 #   st.header('CH2')
-  vol_per_div_ch2 = st.selectbox('VOLTS/DIV (CH2)',
-                                 ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
-                                 2,
-                                )
-  vol = vol_per_div_ch2 
+  vol_ind = st.selectbox('VOLTS/DIV (CH2)', dict_vol, 2)
+  vol_per_div_ch2 = dict_vol.get(vol_ind)
+  st.write(vol_per_div_ch2)
   
 with col3:
 #   st.header('TIME')
-  time_per_div0 = st.selectbox('TIME/DIV',
-                               ('25ms', '10ms', '5ms', '2.5ms', '1ms', '500μs', '250μs', '100μs', '50μs', '25μs', '10μs', '5μs'),
-                               4,
-                                )
+  time_ind = st.selectbox('TIME/DIV', dict_time, 4)
+  time_per_div1 = dict_time.get(time_ind)
+  st.write(time_pre_div1)
   
   
 # x1=float(x1)
