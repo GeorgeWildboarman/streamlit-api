@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import base64 
 import altair as alt
+from scipy import signal
 
 st.title('Oscilloscope')
 
