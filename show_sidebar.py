@@ -16,10 +16,12 @@ y1=st.sidebar.text_input('Input Y1 here',10)
 y2=st.sidebar.text_input('Input Y2 here',20)
 density=st.sidebar.text_input('Input Model Density contrast here (background - body)',2000)
 
+x2 = float(x2)
 x = np.arange(100)
+
 source = pd.DataFrame({
   'x': x,
-  'f(x)': np.sin(x / 5)
+  'f(x)': x2 * np.sin(x / 5)
 })
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
