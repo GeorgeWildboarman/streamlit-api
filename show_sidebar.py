@@ -22,7 +22,8 @@ x2=st.sidebar.text_input('Amp Voltage [V]',2)
 time_per_div = 1.0e-4
 fq = float(x1)
 x2 = float(x2)
-omega = 2*np.pi*fq/time_per_div/100
+# omega = 2*np.pi*fq/time_per_div/100
+omega = 2*np.pi/10
 
 source = pd.DataFrame({
   'x': x,
@@ -30,7 +31,7 @@ source = pd.DataFrame({
 })
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
-  alt.X('x', scale=alt.Scale(domain=(20, 100)),title="Time"),
+  alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
   y='f(x)',
 )
 
