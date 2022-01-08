@@ -57,10 +57,10 @@ with col1:
 
 with col2:
   st.header('CH2')
-#   vol_per_div_ch2 = st.multiselect('VOLTS/DIV',
-#                                    ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
-#                                    ['1V'],
-#                                   )
+  vol_per_div_ch2 = st.multiselect('VOLTS/DIV',
+                                   ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
+                                   ['1V'],
+                                  )
 
 with col3:
   st.header('TIME')
