@@ -66,9 +66,9 @@ dict_vol ={
 
 with col1:
 #   st.header('CH1')
-  vol_ind = st.selectbox('VOLTS/DIV (CH1)', df_vol, 2)
-  vol = df_vol[df_vol['ind']==vol_ind]['val']
-  st.write(vol)
+  vol_ind = st.selectbox('VOLTS/DIV (CH1)', dict_vol, 2)
+#   vol = df_vol[df_vol['ind']==vol_ind]['val']
+#   st.write(vol)
 
 with col2:
 #   st.header('CH2')
