@@ -49,18 +49,14 @@ h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 col1, col2, col3 = st.columns(3)
 
 df_vol = pd.DataFrame({
-  'vol': ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
+  'ind': ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
   'val': [5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02],
 })
 
 with col1:
 #   st.header('CH1')
-  vol_per_div_ch1 = st.selectbox('VOLTS/DIV (CH1)',
-#                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
-                                 df_vol,
-                                 2,
-                                )
-  vol = df_vol[vol_per_div_ch1]
+  vol_ind = st.selectbox('VOLTS/DIV (CH1)', df_vol, 2)
+  vol = df_vol[df_vol['ind']==vol_ind]['val']
   st.write(vol)
 
 with col2:
