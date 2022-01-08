@@ -50,14 +50,14 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
   st.header('CH1')
-  vol_per_div_ch1 = st.selectbox('VOLTS/DIV',
+  vol_per_div_ch1 = st.selectbox('CH1 VOLTS/DIV',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
                                 )
   vol = vol_per_div_ch1
 
 with col2:
-  st.write('CH2')
+  st.header('CH2')
   vol_per_div_ch2 = st.selectbox('CH2 VOLTS/DIV',
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
