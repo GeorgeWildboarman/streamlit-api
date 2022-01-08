@@ -61,6 +61,7 @@ with col1:
                                  2,
                                 )
   vol = vol_per_div_ch1
+  st.write(vol)
 
 with col2:
 #   st.header('CH2')
