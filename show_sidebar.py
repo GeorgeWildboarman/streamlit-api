@@ -66,9 +66,9 @@ with col2:
   
 with col3:
   st.header('TIME')
-  time_per_div0 = st.multiselect('TIME/DIV',
-                                 ['25ms', '10ms', '5ms', '2.5ms', '1ms', '500μs', '250μs', '100μs', '50μs', '25μs', '10μs', '5μs'],
-                                 ['1ms'],
+  time_per_div0 = st.selectbox('TIME/DIV',
+                               ('25ms', '10ms', '5ms', '2.5ms', '1ms', '500μs', '250μs', '100μs', '50μs', '25μs', '10μs', '5μs'),
+                               4,
                                 )
   
   
