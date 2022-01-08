@@ -52,14 +52,20 @@ with col1:
   st.header('CH1')
   vol_per_div_ch1 = st.multiselect('VOLTS/DIV',
                                    ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
+                                   ['1V'],
                                   )
 
 with col2:
   st.header('CH2')
   vol_per_div_ch2 = st.multiselect('VOLTS/DIV',
                                    ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
+                                   ['1V'],
                                   )
 
+with col3:
+  st.header('TIME')
+  
+  
 # x1=float(x1)
 # x2=float(x2)
 # y1=float(y1)
