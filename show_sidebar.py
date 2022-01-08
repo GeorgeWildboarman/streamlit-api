@@ -29,7 +29,7 @@ x = np.arange(total_point)
 fq = float(x1)
 x2 = float(x2)
 # omega = 2*np.pi*fq/time_per_div/100
-omega = 2*np.pi/100*5
+omega = 2*np.pi*fq
 # omega = 0.2
 
 source = pd.DataFrame({
