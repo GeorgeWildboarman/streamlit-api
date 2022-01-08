@@ -64,6 +64,10 @@ with col2:
 
 with col3:
   st.header('TIME')
+  time_per_div0 = st.multiselect('TIME/DIV',
+                                 ['10ms', '5ms', '2ms', '.5ms', '.2ms'],
+                                 ['2ms'],
+                                )
   
   
 # x1=float(x1)
