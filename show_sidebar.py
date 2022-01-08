@@ -60,7 +60,7 @@ with col1:
                                  df_vol,
                                  2,
                                 )
-  vol = vol_per_div_ch1
+  vol = vol_per_div_ch1.val
   st.write(vol)
 
 with col2:
