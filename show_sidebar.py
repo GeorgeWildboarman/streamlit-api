@@ -24,7 +24,7 @@ total_div = 10
 time_per_point = time_per_div / point_per_div
 total_point = total_div * point_per_div
 
-x = np.arange(total_point)
+x = np.arange(total_point+1)
 
 fq = float(x1)
 x2 = float(x2)
