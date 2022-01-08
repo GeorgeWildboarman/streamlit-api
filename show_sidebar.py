@@ -46,8 +46,8 @@ c = alt.Chart(source,width=600,height=400).mark_line().encode(
 st.altair_chart(c)
 h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 
-options = st.multiselect(
-     'What are your favorite colors',
+t_div = st.multiselect(
+     'Time/Div',
      ['Green', 'Yellow', 'Red', 'Blue'],
      ['Yellow', 'Red'])
 
