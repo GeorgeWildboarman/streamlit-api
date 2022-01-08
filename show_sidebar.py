@@ -20,7 +20,7 @@ x2=st.sidebar.text_input('Amp Voltage [V]',2)
 
 time_per_div = 1.0e-5
 point_per_div = 25
-total_div = 8
+total_div = 10
 time_per_point = time_per_div / point_per_div
 total_point = total_div * point_per_div
 
