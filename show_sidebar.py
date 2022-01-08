@@ -54,7 +54,7 @@ with col1:
                                  ('5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'),
                                  2,
                                 )
-
+  vol = vol_per_div_ch1
 
 with col2:
   st.header('CH2')
