@@ -18,7 +18,7 @@ x2=st.sidebar.text_input('Amp Voltage [V]',2)
 # y2=st.sidebar.text_input('Input Y2 here',20)
 # density=st.sidebar.text_input('Input Model Density contrast here (background - body)',2000)
 
-time_per_div = 1.0e-4
+time_per_div = 1.0e-5
 point_per_div = 25
 total_div = 8
 time_per_point = time_per_div / point_per_div
@@ -38,8 +38,9 @@ source = pd.DataFrame({
 })
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
-  alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
-  y='f(x)',
+  x = 'x',
+#   alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
+  y = 'f(x)',
 )
 
 st.altair_chart(c)
