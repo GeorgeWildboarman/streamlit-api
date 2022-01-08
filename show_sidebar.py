@@ -50,13 +50,13 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
   st.header('CH1')
-  vol_per_div_ch1 = st.multiselect('VOLTS/DIV'
+  vol_per_div_ch1 = st.multiselect('VOLTS/DIV',
                                    ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
                                   )
 
 with col2:
   st.header('CH2')
-  vol_per_div_ch2 = st.multiselect('VOLTS/DIV'
+  vol_per_div_ch2 = st.multiselect('VOLTS/DIV',
                                    ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
                                   )
 
