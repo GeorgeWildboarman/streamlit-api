@@ -68,7 +68,7 @@ omega = 2*np.pi*fq
 
 source = pd.DataFrame({
   'x': x,
-  'f(x)': amp * np.sin(omega*(x+h_pos)*time_per_point)
+  'f(x)': amp * np.sin(omega*(x-h_pos)*time_per_point)
 })
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
