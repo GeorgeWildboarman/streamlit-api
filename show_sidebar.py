@@ -53,7 +53,7 @@ with col3:
 #   st.header('TIME')
   time_ind = st.selectbox('TIME/DIV', dict_time, 10)
   time_per_div = dict_time.get(time_ind)
-  st.write(time_per_div1)
+  st.write(time_per_div)
 
 # time_per_div = 1.0e-5
 time_per_point = time_per_div / point_per_div
