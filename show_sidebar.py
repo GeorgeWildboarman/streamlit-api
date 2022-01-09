@@ -7,16 +7,17 @@ import altair as alt
 
 st.title('Oscilloscope')
 
-# xp = np.linspace(0,100,100)
-# zp = np.zeros_like(xp)
-
 # Sidebar for funcction generator to be set 
 st.sidebar.title('Function Generator')
 fq = st.sidebar.number_input('Frequency [Hz]', value=10000)
 amp = st.sidebar.number_input('Amp Voltage [V]', value=2)
 
+# OSC Display
 main_dsp = st.container()
 main_dsp.header('Display')
+
+# OSC settings
+h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 
 time_per_div = 1.0e-5
 point_per_div = 25
@@ -24,18 +25,9 @@ total_div = 10
 time_per_point = time_per_div / point_per_div
 total_point = total_div * point_per_div
 
-x = np.arange(total_point+1)
 
-# fq = float(x1)
-# x2 = float(x2)
-# omega = 2*np.pi*fq/time_per_div/100
-omega = 2*np.pi*fq
-# omega = 0.2
 
-source = pd.DataFrame({
-  'x': x,
-  'f(x)': amp * np.sin(omega*x*time_per_point)
-})
+
 
 col1, col2, col3 = st.columns(3)
 
@@ -69,7 +61,18 @@ with col3:
   time_per_div1 = dict_time.get(time_ind)
   st.write(time_per_div1)
   
-  
+
+# Create Waveforms
+x = np.arange(total_point+1)
+
+# omega = 2*np.pi*fq/time_per_div/100
+omega = 2*np.pi*fq
+# omega = 0.2
+
+source = pd.DataFrame({
+  'x': x,
+  'f(x)': amp * np.sin(omega*x*time_per_point)
+})
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
   x = 'x',
@@ -78,5 +81,4 @@ c = alt.Chart(source,width=600,height=400).mark_line().encode(
 )
 
 main_dsp.altair_chart(c)
-h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 
