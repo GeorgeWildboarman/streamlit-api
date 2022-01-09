@@ -7,16 +7,13 @@ import altair as alt
 
 st.title('Oscilloscope')
 
-xp = np.linspace(0,100,100)
-zp = np.zeros_like(xp)
+# xp = np.linspace(0,100,100)
+# zp = np.zeros_like(xp)
 
-
+# Sidebar for funcction generator to be set 
 st.sidebar.title('Function Generator')
-x1=st.sidebar.text_input('Frequency [Hz]',10000)
-x2=st.sidebar.text_input('Amp Voltage [V]',2)
-# y1=st.sidebar.text_input('Input Y1 here',10)
-# y2=st.sidebar.text_input('Input Y2 here',20)
-# density=st.sidebar.text_input('Input Model Density contrast here (background - body)',2000)
+fq = st.sidebar.st.number_input('Frequency [Hz]',10000)
+amp = st.sidebar.st.number_input('Amp Voltage [V]',2)
 
 main_dsp = st.container()
 main_dsp.header('Display')
@@ -29,15 +26,15 @@ total_point = total_div * point_per_div
 
 x = np.arange(total_point+1)
 
-fq = float(x1)
-x2 = float(x2)
+# fq = float(x1)
+# x2 = float(x2)
 # omega = 2*np.pi*fq/time_per_div/100
 omega = 2*np.pi*fq
 # omega = 0.2
 
 source = pd.DataFrame({
   'x': x,
-  'f(x)': x2 * np.sin(omega*x*time_per_point)
+  'f(x)': amp * np.sin(omega*x*time_per_point)
 })
 
 col1, col2, col3 = st.columns(3)
