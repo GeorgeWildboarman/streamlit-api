@@ -12,8 +12,8 @@ st.title('Oscilloscope')
 
 # Sidebar for funcction generator to be set 
 st.sidebar.title('Function Generator')
-fq = st.sidebar.st.number_input('Frequency [Hz]', value=10000)
-amp = st.sidebar.st.number_input('Amp Voltage [V]', value=2)
+fq = st.sidebar.number_input('Frequency [Hz]', value=10000)
+amp = st.sidebar.number_input('Amp Voltage [V]', value=2)
 
 main_dsp = st.container()
 main_dsp.header('Display')
