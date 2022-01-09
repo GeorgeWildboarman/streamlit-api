@@ -18,6 +18,9 @@ x2=st.sidebar.text_input('Amp Voltage [V]',2)
 # y2=st.sidebar.text_input('Input Y2 here',20)
 # density=st.sidebar.text_input('Input Model Density contrast here (background - body)',2000)
 
+main_dsp = st.container()
+main_dsp.header('Display')
+
 time_per_div = 1.0e-5
 point_per_div = 25
 total_div = 10
@@ -36,15 +39,6 @@ source = pd.DataFrame({
   'x': x,
   'f(x)': x2 * np.sin(omega*x*time_per_point)
 })
-
-c = alt.Chart(source,width=600,height=400).mark_line().encode(
-  x = 'x',
-#   alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
-  y = 'f(x)',
-)
-
-st.altair_chart(c)
-h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 
 col1, col2, col3 = st.columns(3)
 
@@ -79,10 +73,13 @@ with col3:
   st.write(time_per_div1)
   
   
-# x1=float(x1)
-# x2=float(x2)
-# y1=float(y1)
-# y2=float(y2)
-# density=float(density)
-# line = gz(xp,zp,x1,x2,y1,y2,density)
+
+c = alt.Chart(source,width=600,height=400).mark_line().encode(
+  x = 'x',
+#   alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
+  y = 'f(x)',
+)
+
+main_dsp.altair_chart(c)
+h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
 
