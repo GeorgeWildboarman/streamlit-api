@@ -20,7 +20,11 @@ main_dsp.header('Display')
 point_per_div = 25
 total_div = 10
 
-h_pos = st.slider('Horizontal position', min_value=-point_per_div*total_div//2, max_value=point_per_div*total_div//2, step=1 )
+h_pos = st.slider('Horizontal position', 
+                  min_value=-point_per_div*total_div//2, 
+                  max_value=point_per_div*total_div//2, 
+                  value=0, step=1, 
+                 )
 
 col1, col2, col3 = st.columns(3)
 
@@ -64,7 +68,7 @@ omega = 2*np.pi*fq
 
 source = pd.DataFrame({
   'x': x,
-  'f(x)': amp * np.sin(omega*x*time_per_point)
+  'f(x)': amp * np.sin(omega*(x+h_pos)*time_per_point)
 })
 
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
