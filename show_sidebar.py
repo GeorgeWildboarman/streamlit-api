@@ -17,17 +17,12 @@ main_dsp = st.container()
 main_dsp.header('Display')
 
 # OSC settings
-h_pos = st.slider('Horizontal position', min_value=-1.0, max_value=1.0, )
-
 point_per_div = 25
 total_div = 10
 
-col1, col2, col3 = st.columns(3)
+h_pos = st.slider('Horizontal position', min_value=-point_per_div*total_div//2, max_value=point_per_div*total_div//2, step=1 )
 
-df_vol = pd.DataFrame({
-  'ind': ['5V', '2V', '1V', '500mV', '200mV', '100mV', '50mV', '20mV'],
-  'val': [5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02],
-})
+col1, col2, col3 = st.columns(3)
 
 dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
 
