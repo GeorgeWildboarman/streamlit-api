@@ -106,13 +106,7 @@ upper_bound1 = vol_per_div_ch1*total_div_v//2
 lower_bound2 = -vol_per_div_ch2*total_div_v//2
 upper_bound2 = vol_per_div_ch2*total_div_v//2
 
-# fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1], 
-#                              tick0=lower_bound,
-#                              dtick=vol_per_div_ch1, 
-#                              ),
-#                   yaxis2=dict(range=[lower_bound2, upper_bound2], 
-#                               # overlaying='y', 
-#                               ))
+fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1]), yaxis2=dict(range=[lower_bound2, upper_bound2]))
 
 main_dsp.plotly_chart(fig)
 # main_dsp.plotly_chart(fig, use_container_width=True)
