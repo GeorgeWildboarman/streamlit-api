@@ -114,4 +114,6 @@ fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1],
                               # overlaying='y', 
                               ))
 
-main_dsp.plotly_chart(fig, use_container_width=True)
+main_dsp.plotly_chart(fig)
+# main_dsp.plotly_chart(fig, use_container_width=True)
+
