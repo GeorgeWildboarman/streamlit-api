@@ -1,6 +1,5 @@
 import streamlit as st
-import plotly.express as px
-import plotly.graph_objects as go
+import plotly
 import numpy as np
 
 st.title('Oscilloscope')
