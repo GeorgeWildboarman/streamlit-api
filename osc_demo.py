@@ -47,14 +47,14 @@ with col3:
   time_per_div = dict_time.get(time_ind)
   st.write(time_per_div)
 
-# OSC Horizontal Settings
+# OSC Settings
 point_per_div = 25
 total_div = 10
 
 time_per_point = time_per_div / point_per_div
 total_point = total_div * point_per_div
 
-
+total_div_v = 8
 
 # Create Waveforms
 vol_per_div_ch1 = 0.2
@@ -88,21 +88,30 @@ fig.update_layout(xaxis=dict(range=[lower_bound, upper_bound],
                              showticklabels=False,
                              ))
 
-lower_bound = -vol_per_div_ch1*4
-upper_bound = vol_per_div_ch1*4
-fig.update_layout(yaxis=dict(range=[lower_bound, upper_bound], 
+fig.update_layout(yaxis=dict( 
                              showticklabels=False,
-                             tick0=lower_bound,
                              zeroline=True,
-                             dtick=vol_per_div_ch1, 
                              zerolinewidth=2, 
                              ))
 
-lower_bound = -vol_per_div_ch2*4
-upper_bound = vol_per_div_ch2*4
-fig.update_layout(yaxis2=dict(range=[lower_bound, upper_bound], 
+fig.update_layout(yaxis2=dict( 
                               showticklabels=False, 
+                              zeroline=False,
                               overlaying='y', 
+                              ))
+
+lower_bound1 = -vol_per_div_ch1*total_div_v//2
+upper_bound1 = vol_per_div_ch1*total_div_v//2
+
+lower_bound2 = -vol_per_div_ch2*total_div_v//2
+upper_bound2 = vol_per_div_ch2*total_div_v//2
+
+fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1], 
+                             tick0=lower_bound,
+                             dtick=vol_per_div_ch1, 
+                             ),
+                  yaxis2=dict(range=[lower_bound2, upper_bound2], 
+                              # overlaying='y', 
                               ))
 
 main_dsp.plotly_chart(fig, use_container_width=True)
