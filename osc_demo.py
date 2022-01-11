@@ -88,7 +88,14 @@ fig.update_layout(xaxis=dict(range=[lower_bound, upper_bound],
                              showticklabels=False,
                              ))
 
+lower_bound1 = -vol_per_div_ch1*total_div_v//2
+upper_bound1 = vol_per_div_ch1*total_div_v//2
+
+lower_bound2 = -vol_per_div_ch2*total_div_v//2
+upper_bound2 = vol_per_div_ch2*total_div_v//2
+
 fig.update_layout(yaxis=dict( 
+                             range=[lower_bound1, upper_bound1],
                              showticklabels=False,
                              zeroline=True,
                              zerolinewidth=2, 
@@ -100,13 +107,7 @@ fig.update_layout(yaxis2=dict(
                               overlaying='y', 
                               ))
 
-lower_bound1 = -vol_per_div_ch1*total_div_v//2
-upper_bound1 = vol_per_div_ch1*total_div_v//2
-
-lower_bound2 = -vol_per_div_ch2*total_div_v//2
-upper_bound2 = vol_per_div_ch2*total_div_v//2
-
-fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1]))
+# fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1]))
 # fig.update_layout(yaxis=dict(range=[lower_bound1, upper_bound1]), yaxis2=dict(range=[lower_bound2, upper_bound2]))
 
 main_dsp.plotly_chart(fig)
