@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 # import base64 
 import altair as alt
-import plotly.graph_objects as go
+# import plotly.graph_objects as go
+import plotly.express as px
 # from scipy import signal
 
 st.title('Oscilloscope')
