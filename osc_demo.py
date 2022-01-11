@@ -94,15 +94,15 @@ fig.update_layout(yaxis=dict(range=[lower_bound, upper_bound],
                              showticklabels=False,
                              tick0=lower_bound,
                              zeroline=True,
-                             dtick=point_per_div, 
+                             dtick=vol_per_div_ch1, 
                              zerolinewidth=2, 
                              ))
 
-lower_bound = -vol_per_div_ch2*2
-upper_bound = vol_per_div_ch2*2
+lower_bound = -vol_per_div_ch2*4
+upper_bound = vol_per_div_ch2*4
 fig.update_layout(yaxis2=dict(range=[lower_bound, upper_bound], 
                               showticklabels=False, 
                               overlaying='y', 
                               ))
 
-st.plotly_chart(fig, use_container_width=True)
+main_dsp.plotly_chart(fig, use_container_width=True)
