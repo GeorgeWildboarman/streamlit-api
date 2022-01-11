@@ -1,8 +1,9 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import base64 
+# import base64 
 import altair as alt
+import plotly.graph_objects as go
 # from scipy import signal
 
 st.title('Oscilloscope')
@@ -71,6 +72,7 @@ source = pd.DataFrame({
   'f(x)': amp * np.sin(omega*(x-h_pos)*time_per_point)
 })
 
+# Show figs
 c = alt.Chart(source,width=600,height=400).mark_line().encode(
   x = 'x',
 #   alt.X('x', scale=alt.Scale(domain=(0, 100)),title="Time"),
