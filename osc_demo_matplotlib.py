@@ -107,7 +107,7 @@ def convert_plt(fig):
    # IMPORTANT: Cache the conversion to prevent computation on every rerun
    return fig.savefig('test_save_fig')
 
-png = convert_df(fig)
+png = convert_plt(fig)
 
 st.download_button(
   label="Download Fig as PNG",
