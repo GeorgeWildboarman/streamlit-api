@@ -71,4 +71,34 @@ waveform = sin_waveform_array(fq, x, time_per_div, h_point_per_div)
 y1 = amp / vol_per_point_ch1 * waveform
 y2 = beta * amp / vol_per_point_ch2 * waveform
 
+# Show fig
+fig, ax = plt.subplots(1, 1, figsize=[10, 10])
+
+param_dict = dict(color='red', linewidth=2, label='CH1')
+ax.plot(x, y1, **param_dict)
+
+param_dict = dict(color='blue', linewidth=2, label='CH2')
+ax.plot(x, y2, **param_dict)
+
+ax.set(aspect=1, xlim=(-h_total_point//2, h_total_point//2), ylim=(-v_total_point//2, v_total_point//2))
+
+# ax.set_xlim(-h_total_point//2, h_total_point//2)
+# ax.set_ylim(-v_total_point//2, v_total_point//2)
+
+ax.set_xticks(np.linspace(-h_total_point//2, h_total_point//2, h_total_div+1, endpoint=True), minor=False, )
+ax.set_yticks(np.linspace(-v_total_point//2, v_total_point//2, v_total_div+1, endpoint=True), minor=False, )
+
+ax.spines['bottom'].set_position('zero')
+ax.spines['left'].set_position('zero')
+
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+
+ax.minorticks_on()
+
+ax.grid(which="major", color="black", alpha=1)
+ax.grid(which="minor", color="gray", linestyle='--')
+ 
+main_dsp.pyplot(fig)
+
 
