@@ -118,24 +118,24 @@ y2 = beta * amp / vol_per_point_ch2 * waveform
 pnt_now()
 
 # Show fig
-# fig, ax = creat_fig(h_total_point, v_total_point)
+fig, ax = creat_fig(h_total_point, v_total_point)
 
-# param_dict = dict(color='red', linewidth=1, label='CH1')
-# ax.plot(x, y1, **param_dict)
+param_dict = dict(color='red', linewidth=1, label='CH1')
+ax.plot(x, y1, **param_dict)
 
-# param_dict = dict(color='blue', linewidth=1, label='CH2')
-# ax.plot(x, y2, **param_dict)
+param_dict = dict(color='blue', linewidth=1, label='CH2')
+ax.plot(x, y2, **param_dict)
 
-# text = '{:,}Hz'.format(fq)
-# fig.text(.9, .2, text, verticalalignment='bottom', horizontalalignment='right')
+text = '{:,}Hz'.format(fq)
+fig.text(.9, .2, text, verticalalignment='bottom', horizontalalignment='right')
 
-# text = 'CH1 VOLTS/DIV={:<10}TIME/DIV={:<6}\nCH2 VOLTS/DIV={:<10}'.format(vol_ind_ch1, time_ind, vol_ind_ch2)
-# fig.text(.1, .2, text, horizontalalignment='left', bbox={'boxstyle':'round', 'facecolor':'white'})
+text = 'CH1 VOLTS/DIV={:<10}TIME/DIV={:<6}\nCH2 VOLTS/DIV={:<10}'.format(vol_ind_ch1, time_ind, vol_ind_ch2)
+fig.text(.1, .2, text, horizontalalignment='left', bbox={'boxstyle':'round', 'facecolor':'white'})
 
-# text = strtime_now_jst()
-# fig.text(.15, .8, text, horizontalalignment='left')
+text = strtime_now_jst()
+fig.text(.15, .8, text, horizontalalignment='left')
 
-# main_dsp.pyplot(fig)
+main_dsp.pyplot(fig)
 
 # def convert_plt(fig):
 #   pnt_now('convert_plt')
