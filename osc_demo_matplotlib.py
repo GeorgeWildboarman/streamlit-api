@@ -115,6 +115,8 @@ vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
 y1 = amp / vol_per_point_ch1 * waveform
 y2 = beta * amp / vol_per_point_ch2 * waveform
 
+pnt_now()
+
 # Show fig
 # fig, ax = creat_fig(h_total_point, v_total_point)
 
