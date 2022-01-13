@@ -104,7 +104,7 @@ ax.grid(which="minor", color="gray", linestyle='--')
 main_dsp.pyplot(fig)
 
 
-@st.cache
+# @st.cache
 def convert_plt(fig):
   st.write('Save fig')
   ofs = BytesIO()
