@@ -72,11 +72,10 @@ with col3:
 #   st.header('TIME')
   time_ind = st.selectbox('TIME/DIV', dict_time, 10)
   time_per_div = dict_time.get(time_ind)
+  waveform = sin_waveform_array(fq, x, time_per_div, h_point_per_div)
   st.write(time_per_div)
 
 # OSC Settings
-waveform = sin_waveform_array(fq, x, time_per_div, h_point_per_div)
-
 vol_per_point_ch1 = vol_per_div_ch1 / v_point_per_div
 vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
 
