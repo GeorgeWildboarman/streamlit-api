@@ -113,12 +113,12 @@ def convert_plt(fig):
 
 png = convert_plt(fig)
 
-# st.download_button(
-#   label="Download Fig as PNG",
-#   data=st.pyplot(fig),
-#   file_name='test_save_fig.png',
-#   mime='image/png',
-#  )
+st.download_button(
+  label="Download Fig as PNG", 
+  data=png,
+  file_name='test_save_fig.png',
+  mime='image/png',
+ )
 
 
 
