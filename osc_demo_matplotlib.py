@@ -106,10 +106,10 @@ main_dsp.pyplot(fig)
 
 @st.cache
 def convert_plt(fig):
-   # IMPORTANT: Cache the conversion to prevent computation on every rerun
-   ofs = BytesIO()
-   fig.save(ofs, format='png')
-   return ofs
+  st.write('Save fig')
+  ofs = BytesIO()
+#   fig.save(ofs, format='png')
+  return ofs
 
 png = convert_plt(fig)
 
