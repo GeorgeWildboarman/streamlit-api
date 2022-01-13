@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
-def pnt_now(text):
+def pnt_now(text=''):
   DIFF_JST_FROM_UTC = 9
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   st.write(text,dt_now.strftime('%Y-%m-%d %H:%M:%S'))
