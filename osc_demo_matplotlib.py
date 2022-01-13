@@ -32,7 +32,27 @@ def div_vals():
               }
   return dict_vol, dict_time
 
-# def creat_fig():
+def creat_fig(h_total_point, v_total_point):
+  fig, ax = plt.subplots(1, 1, figsize=[5, 5])
+
+  ax.set(aspect=1, xlim=(-h_total_point//2, h_total_point//2), ylim=(-v_total_point//2, v_total_point//2))
+
+  ax.set_xticks(np.linspace(-h_total_point//2, h_total_point//2, h_total_div+1, endpoint=True), minor=False, )
+  ax.set_yticks(np.linspace(-v_total_point//2, v_total_point//2, v_total_div+1, endpoint=True), minor=False, )
+
+  ax.spines['bottom'].set_position('zero')
+  ax.spines['left'].set_position('zero')
+
+  ax.set_xticklabels([])
+  ax.set_yticklabels([])
+
+  ax.minorticks_on()
+
+  ax.grid(which="major", color="black", alpha=1)
+  ax.grid(which="minor", color="gray", linestyle='--')
+  
+  return fig, ax
+
   
 # Config horizontal params and estimate x-axis points
 h_point_per_div = 25
@@ -97,26 +117,25 @@ y1 = amp / vol_per_point_ch1 * waveform
 y2 = beta * amp / vol_per_point_ch2 * waveform
 
 # Show fig
-fig, ax = plt.subplots(1, 1, figsize=[5, 5])
+# fig, ax = plt.subplots(1, 1, figsize=[5, 5])
 
-ax.set(aspect=1, xlim=(-h_total_point//2, h_total_point//2), ylim=(-v_total_point//2, v_total_point//2))
+# ax.set(aspect=1, xlim=(-h_total_point//2, h_total_point//2), ylim=(-v_total_point//2, v_total_point//2))
 
-# ax.set_xlim(-h_total_point//2, h_total_point//2)
-# ax.set_ylim(-v_total_point//2, v_total_point//2)
+# ax.set_xticks(np.linspace(-h_total_point//2, h_total_point//2, h_total_div+1, endpoint=True), minor=False, )
+# ax.set_yticks(np.linspace(-v_total_point//2, v_total_point//2, v_total_div+1, endpoint=True), minor=False, )
 
-ax.set_xticks(np.linspace(-h_total_point//2, h_total_point//2, h_total_div+1, endpoint=True), minor=False, )
-ax.set_yticks(np.linspace(-v_total_point//2, v_total_point//2, v_total_div+1, endpoint=True), minor=False, )
+# ax.spines['bottom'].set_position('zero')
+# ax.spines['left'].set_position('zero')
 
-ax.spines['bottom'].set_position('zero')
-ax.spines['left'].set_position('zero')
+# ax.set_xticklabels([])
+# ax.set_yticklabels([])
 
-ax.set_xticklabels([])
-ax.set_yticklabels([])
+# ax.minorticks_on()
 
-ax.minorticks_on()
+# ax.grid(which="major", color="black", alpha=1)
+# ax.grid(which="minor", color="gray", linestyle='--')
 
-ax.grid(which="major", color="black", alpha=1)
-ax.grid(which="minor", color="gray", linestyle='--')
+fig, ax = creat_fig(h_total_point, v_total_point)
 
 param_dict = dict(color='red', linewidth=1, label='CH1')
 ax.plot(x, y1, **param_dict)
