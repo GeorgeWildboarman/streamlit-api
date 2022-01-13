@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
+@st.cache
 def h_point_array(h_total_point):
   return np.arange(-h_total_point, h_total_point+1)
 
@@ -13,6 +14,18 @@ def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25)
   omega = 2*np.pi*fq
   return np.sin(omega*x*time_per_point)
 
+# Config horizontal params and estimate x-axis points
+h_point_per_div = 25
+h_total_div = 10
+h_total_point = h_total_div * h_point_per_div
+x = h_point_array(h_total_point)
+
+# Config vertical params
+v_point_per_div = 25
+v_total_div = 8
+v_total_point = v_point_per_div * v_total_div
+
+# Display title
 st.title('Oscilloscope')
 
 # Sidebar for funcction generator to be set 
@@ -55,16 +68,6 @@ with col3:
   st.write(time_per_div)
 
 # OSC Settings
-h_point_per_div = 25
-h_total_div = 10
-h_total_point = h_total_div * h_point_per_div
-
-x = h_point_array(h_total_point)
-
-v_point_per_div = 25
-v_total_div = 8
-v_total_point = v_point_per_div * v_total_div
-
 vol_per_point_ch1 = vol_per_div_ch1 / v_point_per_div
 vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
 
