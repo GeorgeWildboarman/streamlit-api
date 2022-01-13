@@ -104,12 +104,14 @@ ax.grid(which="minor", color="gray", linestyle='--')
 main_dsp.pyplot(fig)
 
 
-# @st.cache
-# def convert_plt(fig):
-#    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-#    fig.savefig('test_save_fig')
+@st.cache
+def convert_plt(fig):
+   # IMPORTANT: Cache the conversion to prevent computation on every rerun
+   ofs = BytesIO()
+   fig.savefig(ofs, format='png')
+   return ofs
 
-# convert_plt(fig)
+png = convert_plt(fig)
 
 # st.download_button(
 #   label="Download Fig as PNG",
