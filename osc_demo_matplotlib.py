@@ -11,11 +11,11 @@ def pnt_now(text):
 
 @st.cache
 def h_point_array(h_total_point):
-  st.info('Hello')
   return np.arange(-h_total_point, h_total_point+1)
 
+@st.cache
 def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25):
-  pnt_now('wave_form')
+#   pnt_now('wave_form')
   time_per_point = time_per_div / h_point_per_div
   x = h_point_array
   omega = 2*np.pi*fq
