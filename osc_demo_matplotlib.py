@@ -1,5 +1,5 @@
 from io import BytesIO
-
+import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
@@ -103,10 +103,15 @@ ax.grid(which="minor", color="gray", linestyle='--')
  
 main_dsp.pyplot(fig)
 
-
+# DIFF_JST_FROM_UTC = 9
+# dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
+# print(dt_now.strftime('%Y-%m-%d %H:%M:%S'))
 # @st.cache
+
 def convert_plt(fig):
-  st.write('Save fig')
+  DIFF_JST_FROM_UTC = 9
+  dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
+  st.write('Save fig',dt_now.strftime('%Y-%m-%d %H:%M:%S'))
   ofs = BytesIO()
   fig.savefig(ofs, format='png')
   return ofs
