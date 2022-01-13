@@ -1,3 +1,5 @@
+from io import BytesIO
+
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
@@ -109,12 +111,12 @@ main_dsp.pyplot(fig)
 
 # convert_plt(fig)
 
-st.download_button(
-  label="Download Fig as PNG",
-  data=st.pyplot(fig),
-  file_name='test_save_fig.png',
-  mime='image/png',
- )
+# st.download_button(
+#   label="Download Fig as PNG",
+#   data=st.pyplot(fig),
+#   file_name='test_save_fig.png',
+#   mime='image/png',
+#  )
 
 
 
