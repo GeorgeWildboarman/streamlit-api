@@ -21,6 +21,18 @@ def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25)
   omega = 2*np.pi*fq
   return np.sin(omega*x*time_per_point)
 
+@st.cache
+def div_vals():
+  dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
+
+  dict_time = {'25ms': 2.5e-2, '10ms': 1e-2, '5ms': 5e-3, 
+               '2.5ms': 2.5e-3, '1ms': 1e-3, '500μs': 5e-4, 
+               '250μs': 2.5e-4, '100μs': 1e-4, '50μs': 5e-5, 
+               '25μs': 2.5e-5, '10μs': 1e-5, '5μs': 5e-6
+              }
+  return dict_vol, dict_time
+
+
 # Config horizontal params and estimate x-axis points
 h_point_per_div = 25
 h_total_div = 10
@@ -48,13 +60,14 @@ main_dsp.header('Display')
 # ADJ Panel
 col1, col2, col3 = st.columns(3)
 
-dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
+dict_vol, dict_time = div_vals()
+# dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
 
-dict_time = {'25ms': 2.5e-2, '10ms': 1e-2, '5ms': 5e-3, 
-             '2.5ms': 2.5e-3, '1ms': 1e-3, '500μs': 5e-4, 
-             '250μs': 2.5e-4, '100μs': 1e-4, '50μs': 5e-5, 
-             '25μs': 2.5e-5, '10μs': 1e-5, '5μs': 5e-6
-            }
+# dict_time = {'25ms': 2.5e-2, '10ms': 1e-2, '5ms': 5e-3, 
+#              '2.5ms': 2.5e-3, '1ms': 1e-3, '500μs': 5e-4, 
+#              '250μs': 2.5e-4, '100μs': 1e-4, '50μs': 5e-5, 
+#              '25μs': 2.5e-5, '10μs': 1e-5, '5μs': 5e-6
+#             }
                   
 with col1:
 #   st.header('CH1')
