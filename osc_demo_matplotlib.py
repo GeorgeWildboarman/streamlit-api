@@ -32,7 +32,8 @@ def div_vals():
               }
   return dict_vol, dict_time
 
-
+# def creat_fig():
+  
 # Config horizontal params and estimate x-axis points
 h_point_per_div = 25
 h_total_div = 10
@@ -98,12 +99,6 @@ y2 = beta * amp / vol_per_point_ch2 * waveform
 # Show fig
 fig, ax = plt.subplots(1, 1, figsize=[5, 5])
 
-param_dict = dict(color='red', linewidth=2, label='CH1')
-ax.plot(x, y1, **param_dict)
-
-param_dict = dict(color='blue', linewidth=2, label='CH2')
-ax.plot(x, y2, **param_dict)
-
 ax.set(aspect=1, xlim=(-h_total_point//2, h_total_point//2), ylim=(-v_total_point//2, v_total_point//2))
 
 # ax.set_xlim(-h_total_point//2, h_total_point//2)
@@ -122,7 +117,13 @@ ax.minorticks_on()
 
 ax.grid(which="major", color="black", alpha=1)
 ax.grid(which="minor", color="gray", linestyle='--')
- 
+
+param_dict = dict(color='red', linewidth=1, label='CH1')
+ax.plot(x, y1, **param_dict)
+
+param_dict = dict(color='blue', linewidth=1, label='CH2')
+ax.plot(x, y2, **param_dict)
+
 main_dsp.pyplot(fig)
 
 # DIFF_JST_FROM_UTC = 9
