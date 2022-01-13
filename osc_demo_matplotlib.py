@@ -4,11 +4,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
+def pnt_now(text):
+  DIFF_JST_FROM_UTC = 9
+  dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
+  st.write(text,dt_now.strftime('%Y-%m-%d %H:%M:%S'))
+
 @st.cache
 def h_point_array(h_total_point):
+  pnt_now('x_points')
   return np.arange(-h_total_point, h_total_point+1)
 
 def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25):
+  pnt_now('wave_form')
   time_per_point = time_per_div / h_point_per_div
   x = h_point_array
   omega = 2*np.pi*fq
@@ -112,9 +119,7 @@ main_dsp.pyplot(fig)
 # @st.cache
 
 def convert_plt(fig):
-  DIFF_JST_FROM_UTC = 9
-  dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
-  st.write('Save fig',dt_now.strftime('%Y-%m-%d %H:%M:%S'))
+  pnt_now('convert_plt')
   ofs = BytesIO()
   fig.savefig(ofs, format='png')
   return ofs
