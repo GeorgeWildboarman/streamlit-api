@@ -111,7 +111,7 @@ main_dsp.pyplot(fig)
 
 st.download_button(
   label="Download Fig as PNG",
-  data=fig,
+  data=st.pyplot(fig),
   file_name='test_save_fig.png',
   mime='image/png',
  )
