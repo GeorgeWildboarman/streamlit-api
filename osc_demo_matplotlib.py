@@ -83,7 +83,7 @@ y1 = amp / vol_per_point_ch1 * waveform
 y2 = beta * amp / vol_per_point_ch2 * waveform
 
 # Show fig
-fig, ax = plt.subplots(1, 1, figsize=[10, 10])
+fig, ax = plt.subplots(1, 1, figsize=[5, 5])
 
 param_dict = dict(color='red', linewidth=2, label='CH1')
 ax.plot(x, y1, **param_dict)
