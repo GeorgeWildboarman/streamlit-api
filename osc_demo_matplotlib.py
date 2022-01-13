@@ -11,9 +11,7 @@ def pnt_now(text):
 
 @st.cache
 def h_point_array(h_total_point):
-#   pnt_now('x_points')
-  with st.echo():
-    pnt_now('x_points')
+  st.info('Hello')
   return np.arange(-h_total_point, h_total_point+1)
 
 def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25):
