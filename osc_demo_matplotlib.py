@@ -37,7 +37,7 @@ def div_vals():
               }
   return dict_vol, dict_time
 
-@st.cache
+# @st.cache
 def creat_fig(h_total_point, v_total_point):
   fig, ax = plt.subplots(1, 1, figsize=[5, 5])
 
