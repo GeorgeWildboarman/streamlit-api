@@ -108,7 +108,7 @@ main_dsp.pyplot(fig)
 def convert_plt(fig):
   st.write('Save fig')
   ofs = BytesIO()
-#   fig.save(ofs, format='png')
+  fig.save(ofs, format='png')
   return ofs
 
 png = convert_plt(fig)
