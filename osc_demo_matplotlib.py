@@ -112,11 +112,12 @@ def convert_plt(fig):
   return ofs
 
 png = convert_plt(fig)
+file_name = '{:06_}Hz.png'.format(fq)
 
 st.download_button(
   label="Download Fig as PNG", 
   data=png,
-  file_name='test_save_fig.png',
+  file_name=file_name,
   mime='image/png',
  )
 
