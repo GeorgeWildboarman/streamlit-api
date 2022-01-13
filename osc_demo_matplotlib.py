@@ -11,7 +11,7 @@ def pnt_now(text):
 
 @st.cache
 def h_point_array(h_total_point):
-  pnt_now('x_points')
+#   pnt_now('x_points')
   return np.arange(-h_total_point, h_total_point+1)
 
 def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25):
@@ -75,10 +75,10 @@ with col3:
   st.write(time_per_div)
 
 # OSC Settings
+waveform = sin_waveform_array(fq, x, time_per_div, h_point_per_div)
+
 vol_per_point_ch1 = vol_per_div_ch1 / v_point_per_div
 vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
-
-waveform = sin_waveform_array(fq, x, time_per_div, h_point_per_div)
 
 y1 = amp / vol_per_point_ch1 * waveform
 y2 = beta * amp / vol_per_point_ch2 * waveform
@@ -118,21 +118,21 @@ main_dsp.pyplot(fig)
 # print(dt_now.strftime('%Y-%m-%d %H:%M:%S'))
 # @st.cache
 
-def convert_plt(fig):
-  pnt_now('convert_plt')
-  ofs = BytesIO()
-  fig.savefig(ofs, format='png')
-  return ofs
+# def convert_plt(fig):
+#   pnt_now('convert_plt')
+#   ofs = BytesIO()
+#   fig.savefig(ofs, format='png')
+#   return ofs
 
-png = convert_plt(fig)
-file_name = '{:06_}Hz.png'.format(fq)
+# png = convert_plt(fig)
+# file_name = '{:06_}Hz.png'.format(fq)
 
-st.download_button(
-  label="Download Fig as PNG", 
-  data=png,
-  file_name=file_name,
-  mime='image/png',
- )
+# st.download_button(
+#   label="Download Fig as PNG", 
+#   data=png,
+#   file_name=file_name,
+#   mime='image/png',
+#  )
 
 
 
