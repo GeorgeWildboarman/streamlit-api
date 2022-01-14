@@ -109,7 +109,7 @@ line1 = base.mark_line(clip=True).encode(
 )    
     
 line2 = base.mark_line(clip=True).encode(
-    y=alt.Y('y2:Q', scale=alt.Scale(domain=ylim2))
+    y=alt.Y('y2:Q', scale=alt.Scale(domain=ylim))
 )    
 
 c = alt.layer(line1, line2).resolve_scale(
