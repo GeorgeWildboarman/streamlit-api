@@ -116,4 +116,4 @@ c = alt.layer(line1, line2).resolve_scale(
     y = 'independent'
 )
 
-st.altair_chart(c, use_container_width=False)
+main_dsp.altair_chart(c, use_container_width=False)
