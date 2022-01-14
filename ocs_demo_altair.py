@@ -95,23 +95,25 @@ y2 = beta * amp / vol_per_point_ch2 * waveform
 # Show fig
 source = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
 
-# xlim = (-h_total_point//2, h_total_point//2)
-# ylim = (-v_total_point//2, v_total_point//2)
+xlim = (-h_total_point//2, h_total_point//2)
+ylim = (-v_total_point//2, v_total_point//2)
 
-# ylim2 = (-v_total_point, v_total_point)
+ylim2 = (-v_total_point, v_total_point)
 
-# base = alt.Chart(source).encode(
-#     x=alt.X('x:Q', axis=alt.Axis(title=None), scale=alt.Scale(domain=xlim)) 
-# ).properties(width=400, height=400)
+base = alt.Chart(source).encode(
+    x=alt.X('x:Q', axis=alt.Axis(title=None), scale=alt.Scale(domain=xlim)) 
+).properties(width=400, height=400)
   
-# line1 = base.mark_line(clip=True).encode(
-#     y=alt.Y('y1:Q', scale=alt.Scale(domain=ylim)),
-# )    
+line1 = base.mark_line(clip=True).encode(
+    y=alt.Y('y1:Q', scale=alt.Scale(domain=ylim)),
+)    
     
-# line2 = base.mark_line(clip=True).encode(
-#     y=alt.Y('y2:Q', scale=alt.Scale(domain=ylim2))
-# )    
+line2 = base.mark_line(clip=True).encode(
+    y=alt.Y('y2:Q', scale=alt.Scale(domain=ylim2))
+)    
 
-# alt.layer(line1, line2).resolve_scale(
-#     y = 'independent'
-# )
+c = alt.layer(line1, line2).resolve_scale(
+    y = 'independent'
+)
+
+st.altair_chart(c, use_container_width=False)
