@@ -105,7 +105,7 @@ base = alt.Chart(source).encode(
 ).properties(width=400, height=400)
   
 line1 = base.mark_line(clip=True).encode(
-    y=alt.Y('y1:Q', scale=alt.Scale(domain=ylim)),
+    y=alt.Y('y1:Q', scale=alt.Scale(domain=ylim), axis=alt.Axis(title=None, grid=True)),
 )    
     
 line2 = base.mark_line(clip=True).encode(
