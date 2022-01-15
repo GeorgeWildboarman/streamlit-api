@@ -16,6 +16,7 @@ def strtime_now_jst():
 
 @st.cache
 def h_point_array(h_total_point):
+#   horizontal points in OSC display coordinate
   return np.arange(-h_total_point, h_total_point+1)
 
 def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
@@ -23,7 +24,6 @@ def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
   return np.abs(be), np.arctan2(be.imag, be.real)
 
-# def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
 @st.cache
 def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   '''
@@ -32,32 +32,20 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   v1 : sine wave function
   v2 : sine wave function transformed by CRx3 filter 
   '''
-
-#   x = np.arange(-h_total_point, h_total_point+1)
+#   horizontal points in OSC display coordinate
   x = h_point_array(h_total_point)
-  omega = 2*np.pi*fq
-
-  # Transform function
-#   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
-#   be = CR3_trans_func(omega, C, R)
-  # Gain
-#   gain = np.abs(be)
-#   gain = 0.5
-  # Phase
-#   theta = np.arctan2(be.imag, be.real)
-#   theta = np.pi/4
+  
   # Generate sine wave
   y1 = np.sin(omega*x*time_per_point)
-
+  
   # Transformed wave
   y2 = gain*np.sin(omega*x*time_per_point+theta)
 
-  # Create pandas DF
-#   pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
-#   return pf
-  return x, y1, y2
+#   Create pandas DF
+  pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+  
+  return pf
 
-# @st.cache
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
 
@@ -121,8 +109,9 @@ with col3:
 gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
 # pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
 # x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, 0.01e-6, 6.8e3)
-x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+# x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
 pf_wave = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+
 # -------------------------------------
 # Show fig as OSC Display
 # -------------------------------------
