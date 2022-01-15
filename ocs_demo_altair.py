@@ -14,6 +14,11 @@ def strtime_now_jst():
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   return dt_now.strftime('%Y-%m-%d %H:%M:%S')
 
+@st.cache
+def CR3_trans_func(C=0.01e-6, R=6.8e3):  
+# Transform function for CRx3 circuit
+  return (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
+
 # def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
 @st.cache
 def sin_func_gen(fq, h_total_point, time_per_point, C, R):
@@ -29,8 +34,8 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   omega = 2*np.pi*fq
 
   # Transform function
-  be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
-
+#   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
+  be = CR3_trans_func(C, R)
   # Gain
   gain = np.abs(be)
   # Phase
