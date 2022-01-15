@@ -14,8 +14,9 @@ def strtime_now_jst():
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   return dt_now.strftime('%Y-%m-%d %H:%M:%S')
 
-# @st.cache
-def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
+@st.cache
+# def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
+def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   '''
   Create pandas DF with 3 columns: x, v1, v2
   x  : horizontal point in OCS display coordinate 
@@ -106,7 +107,7 @@ with col3:
   st.write(time_per_div)
 
 # Generate wave function
-pf_wave = sin_func_gen(fq, h_total_point, time_per_point)
+pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
 
 # -------------------------------------
 # Show fig as OSC Display
