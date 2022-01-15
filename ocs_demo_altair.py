@@ -25,7 +25,7 @@ def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
 
 # def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
 @st.cache
-def sin_func_gen(fq, h_total_point, time_per_point, C, R):
+def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   '''
   Create pandas DF with 3 columns: x, v1, v2
   x  : horizontal point in OCS display coordinate 
@@ -42,10 +42,10 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
 #   be = CR3_trans_func(omega, C, R)
   # Gain
 #   gain = np.abs(be)
-  gain = 0.5
+#   gain = 0.5
   # Phase
 #   theta = np.arctan2(be.imag, be.real)
-  theta = np.pi/4
+#   theta = np.pi/4
   # Generate sine wave
   y1 = np.sin(omega*x*time_per_point)
 
