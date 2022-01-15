@@ -18,7 +18,8 @@ def strtime_now_jst():
 def h_point_array(h_total_point):
   return np.arange(-h_total_point, h_total_point+1)
 
-def cal_gain_and_phase(omega, C, R):
+def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
+  omega = 2*np.pi*fq
   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
   return np.abs(be), np.arctan2(be.imag, be.real)
 
@@ -120,7 +121,7 @@ with col3:
 # pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
 x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, 0.01e-6, 6.8e3)
 pf_wave = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
-a, b = cal_gain_and_phase(2*np.pi*fq, C, R)
+a, b = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
 # -------------------------------------
 # Show fig as OSC Display
 # -------------------------------------
