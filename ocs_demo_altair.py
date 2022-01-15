@@ -38,12 +38,13 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
 
   # Transform function
 #   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
-  be = CR3_trans_func(omega, C, R)
+#   be = CR3_trans_func(omega, C, R)
   # Gain
-  gain = np.abs(be)
+#   gain = np.abs(be)
+  gain = 0.5
   # Phase
-  theta = np.arctan2(be.imag, be.real)
-
+#   theta = np.arctan2(be.imag, be.real)
+  theta = np.pi/4
   # Generate sine wave
   y1 = np.sin(omega*x*time_per_point)
 
