@@ -110,7 +110,7 @@ with col3:
 # Generate wave function
 # pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
 x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
-pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+pf_wave = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
 
 # -------------------------------------
 # Show fig as OSC Display
