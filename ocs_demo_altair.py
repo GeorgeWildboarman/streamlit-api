@@ -42,11 +42,9 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   # Transformed wave
   y2 = gain*np.sin(omega*x*time_per_point+theta)
 
-  # Create pandas DF
-  pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+  # Create pandas DF and return it
+  return pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
   
-  return pf
-
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
 
@@ -166,7 +164,7 @@ base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
 ).properties(width=550, height=400)
 
-line1 = base.mark_line(clip=True, color='red').encode(
+line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1')
 ).transform_calculate(
     y=alt.datum.y1*amp/vol_per_point_ch1
