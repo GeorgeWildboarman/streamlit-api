@@ -18,7 +18,7 @@ def strtime_now_jst():
 def h_point_array(h_total_point):
   return np.arange(-h_total_point, h_total_point+1)
 
-@st.cache
+# @st.cache
 def CR3_trans_func(omega, C, R):  
   return (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
 
