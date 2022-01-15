@@ -43,8 +43,9 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   y2 = gain*np.sin(omega*x*time_per_point+theta)
 
   # Create pandas DF
-  pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
-  return pf
+#   pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+#   return pf
+  return x, y1, y2
 
 @st.cache
 def div_vals():
@@ -107,7 +108,9 @@ with col3:
   st.write(time_per_div)
 
 # Generate wave function
-pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
+# pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
+x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
+pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
 
 # -------------------------------------
 # Show fig as OSC Display
