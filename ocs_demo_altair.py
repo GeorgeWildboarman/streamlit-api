@@ -23,7 +23,7 @@ def CR3_trans_func(omega, C, R):
   return (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
 
 # def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
-# @st.cache
+@st.cache
 def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   '''
   Create pandas DF with 3 columns: x, v1, v2
