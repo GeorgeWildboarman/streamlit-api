@@ -14,7 +14,7 @@ def strtime_now_jst():
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   return dt_now.strftime('%Y-%m-%d %H:%M:%S')
 
-@st.cache
+# @st.cache
 def CR3_trans_func(C=0.01e-6, R=6.8e3):  
 # Transform function for CRx3 circuit
   return (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
