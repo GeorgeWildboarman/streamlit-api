@@ -130,7 +130,7 @@ pf_ygrid = pd.DataFrame({'val':v_grid_val})
 total_sub_ygrid = v_total_div*sub_grid_ticks+1
 
 
-ygrid_lines = alt.Chart(pf_ygrid).mark_rule().encode(
+ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
     y=alt.Y('val:Q',
             scale=alt.Scale(domain=ylim),
             axis=alt.Axis(title=None,
@@ -145,7 +145,7 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule().encode(
     )
 )
 
-xgrid_lines = alt.Chart(pf_xgrid).mark_rule().encode(
+xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
     x=alt.X('val:Q',
             scale=alt.Scale(domain=xlim),
             axis=alt.Axis(title=None,
@@ -178,6 +178,6 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 
 # c = xgrid_lines + ygrid_lines +line1 + line2
 
-c = alt.layer(xgrid_lines, ygrid_lines, line1, line2)
+c = alt.layer(xgrid_lines, ygrid_lines, line1, line2).configure(background='black')
 
 main_dsp.altair_chart(c, use_container_width=False)
