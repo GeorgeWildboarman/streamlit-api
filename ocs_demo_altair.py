@@ -37,7 +37,6 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   omega = 2*np.pi*fq
 
   # Transform function
-  a, b = cal_gain_and_phase(omega, C, R)
 #   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
 #   be = CR3_trans_func(omega, C, R)
   # Gain
@@ -121,7 +120,7 @@ with col3:
 # pf_wave = sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3)
 x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, 0.01e-6, 6.8e3)
 pf_wave = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
-
+a, b = cal_gain_and_phase(omega, C, R)
 # -------------------------------------
 # Show fig as OSC Display
 # -------------------------------------
