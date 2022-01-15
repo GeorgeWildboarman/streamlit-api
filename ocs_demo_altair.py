@@ -14,7 +14,7 @@ def strtime_now_jst():
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   return dt_now.strftime('%Y-%m-%d %H:%M:%S')
 
-@st.cache
+# @st.cache
 # def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
 def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   '''
