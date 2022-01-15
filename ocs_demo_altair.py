@@ -16,7 +16,7 @@ def strtime_now_jst():
 
 @st.cache
 def h_point_array(h_total_point):
-#   horizontal points in OSC display coordinate
+  # horizontal points in OSC display coordinate
   return np.arange(-h_total_point, h_total_point+1)
 
 def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
@@ -32,16 +32,17 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   v1 : sine wave function
   v2 : sine wave function transformed by CRx3 filter 
   '''
-#   horizontal points in OSC display coordinate
+  # horizontal points in OSC display coordinate
   x = h_point_array(h_total_point)
   
+  omega = 2*np.pi*fq
   # Generate sine wave
   y1 = np.sin(omega*x*time_per_point)
   
   # Transformed wave
   y2 = gain*np.sin(omega*x*time_per_point+theta)
 
-#   Create pandas DF
+  # Create pandas DF
   pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
   
   return pf
