@@ -18,9 +18,9 @@ def strtime_now_jst():
 def h_point_array(h_total_point):
   return np.arange(-h_total_point, h_total_point+1)
 
-# @st.cache
-def CR3_trans_func(omega, C, R):  
-  return (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
+def cal_gain_and_phase(omega, C, R):
+  be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
+  return np.abs(be), np.arctan2(be.imag, be.real)
 
 # def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
 @st.cache
@@ -37,6 +37,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
   omega = 2*np.pi*fq
 
   # Transform function
+  a, b = cal_gain_and_phase(omega, C, R)
 #   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
 #   be = CR3_trans_func(omega, C, R)
   # Gain
