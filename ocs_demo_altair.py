@@ -15,16 +15,35 @@ def strtime_now_jst():
   return dt_now.strftime('%Y-%m-%d %H:%M:%S')
 
 @st.cache
-def h_point_array(h_total_point):
-  return np.arange(-h_total_point, h_total_point+1)
+def sin_func_gen(fq, h_total_point, time_per_point, C=0.01e-6, R=6.8e3):
+  '''
+  Create pandas DF with 3 columns: x, v1, v2
+  x  : horizontal point in OCS display coordinate 
+  v1 : sine wave function
+  v2 : sine wave function transformed by CRx3 filter 
+  '''
 
-@st.cache
-def sin_waveform_array(fq, h_point_array, time_per_div=1e-5, h_point_per_div=25):
-#   pnt_now('wave_form')
-  time_per_point = time_per_div / h_point_per_div
-  x = h_point_array
+  x = np.arange(-h_total_point, h_total_point+1)
+
   omega = 2*np.pi*fq
-  return np.sin(omega*x*time_per_point)
+
+  # Transform function
+  be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
+
+  # Gain
+  gain = np.abs(be)
+  # Phase
+  theta = np.arctan2(be.imag, be.real)
+
+  # Generate sine wave
+  y1 = np.sin(omega*x*time_per_point)
+
+  # Transformed wave
+  y2 = gain*np.sin(omega*x*time_per_point+theta)
+
+  # Create pandas DF
+  pf = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+  return pf
 
 @st.cache
 def div_vals():
@@ -37,45 +56,46 @@ def div_vals():
               }
   return dict_vol, dict_time
 
-# Config horizontal params and estimate x-axis points
-h_point_per_div = 25
+# Config horizontal axis for OCS
+h_point_per_div = 50
 h_total_div = 10
 h_total_point = h_total_div * h_point_per_div
-x = h_point_array(h_total_point)
 
-# Config vertical params
-v_point_per_div = 25
+# Config vertical axis for OCS
+v_point_per_div = 50
 v_total_div = 8
 v_total_point = v_point_per_div * v_total_div
+
+# Create sidebar for FG front panel 
+st.sidebar.title('Function Generator')
+# Select params on FG
+fq = st.sidebar.number_input('Frequency [Hz]', value=10000)
+amp = st.sidebar.number_input('Amp Voltage [V]', value=2)
 
 # Display title
 st.title('Oscilloscope')
 
-# Sidebar for funcction generator to be set 
-st.sidebar.title('Function Generator')
-fq = st.sidebar.number_input('Frequency [Hz]', value=10000)
-amp = st.sidebar.number_input('Amp Voltage [V]', value=2)
-beta = 0.7
-
-# OSC Display
+# Create OSC Display
 main_dsp = st.container()
 main_dsp.header('Display')
 
-# ADJ Panel
+# Create OSC ADJ Panel
 col1, col2, col3 = st.columns(3)
 
+# Select OCS params
 dict_vol, dict_time = div_vals()
-
 with col1:
 #   st.header('CH1')
   vol_ind_ch1 = st.selectbox('VOLTS/DIV (CH1)', dict_vol, 2)
   vol_per_div_ch1 = dict_vol.get(vol_ind_ch1)
+  vol_per_point_ch1 = vol_per_div_ch1 / v_point_per_div
   st.write(vol_per_div_ch1)
 
 with col2:
 #   st.header('CH2')
   vol_ind_ch2 = st.selectbox('VOLTS/DIV (CH2)', dict_vol, 2)
   vol_per_div_ch2 = dict_vol.get(vol_ind_ch2)
+  vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
   st.write(vol_per_div_ch2)
   
 with col3:
@@ -83,37 +103,79 @@ with col3:
   time_ind = st.selectbox('TIME/DIV', dict_time, 10)
   time_per_div = dict_time.get(time_ind)
   waveform = sin_waveform_array(fq, x, time_per_div, h_point_per_div)
+  time_per_point = time_per_div / h_point_per_div
   st.write(time_per_div)
 
-# OSC Settings
-vol_per_point_ch1 = vol_per_div_ch1 / v_point_per_div
-vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
+# Generate wave function
+pf_wave = sin_func_gen(fq, h_total_point, time_per_point)
 
-y1 = amp / vol_per_point_ch1 * waveform
-y2 = beta * amp / vol_per_point_ch2 * waveform
+# -------------------------------------
+# Show fig as OSC Display
+# -------------------------------------
 
-# Show fig
-source = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
-
+# vertical and horizontal ranges
 xlim = (-h_total_point//2, h_total_point//2)
 ylim = (-v_total_point//2, v_total_point//2)
 
-ylim2 = (-v_total_point, v_total_point)
+# Draw grid lines
+sub_grid_ticks = 5
+h_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
+pf_xgrid = pd.DataFrame({'val':h_grid_val})
+total_sub_xgrid = h_total_div*sub_grid_ticks+1
 
-base = alt.Chart(source).encode(
-    x=alt.X('x:Q', axis=alt.Axis(title=None), scale=alt.Scale(domain=xlim)) 
-).properties(width=400, height=400)
-  
-line1 = base.mark_line(clip=True).encode(
-    y=alt.Y('y1:Q', scale=alt.Scale(domain=ylim), axis=alt.Axis(title=None, grid=True)),
-)    
-    
-line2 = base.mark_line(clip=True).encode(
-    y=alt.Y('y2:Q', scale=alt.Scale(domain=ylim))
-)    
+v_grid_val = np.linspace(*ylim, v_total_div+1, endpoint=True)
+pf_ygrid = pd.DataFrame({'val':v_grid_val})
+total_sub_ygrid = v_total_div*sub_grid_ticks+1
 
-c = alt.layer(line1, line2).resolve_scale(
-    y = 'independent'
+
+ygrid_lines = alt.Chart(pf_ygrid).mark_rule().encode(
+    y=alt.Y('val:Q',
+            scale=alt.Scale(domain=ylim),
+            axis=alt.Axis(title=None,
+                          grid=True,
+                          gridColor='gray',
+                          gridDash=[2],
+                          labels=False,
+                          ticks=False,
+                          # tickMinStep=sub_grid_ticks,
+                          tickCount=total_sub_ygrid
+            )
+    )
 )
+
+xgrid_lines = alt.Chart(pf_xgrid).mark_rule().encode(
+    x=alt.X('val:Q',
+            scale=alt.Scale(domain=xlim),
+            axis=alt.Axis(title=None,
+                          grid=True,
+                          gridColor='gray',
+                          gridDash=[2],
+                          labels=False,
+                          ticks=False,
+                          tickCount=total_sub_xgrid,
+            )
+    )
+)    
+
+# Draw waveforms
+base = alt.Chart(pf_wave).encode(
+    x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
+).properties(width=550, height=400)
+
+line1 = base.mark_line(clip=True, color='red').encode(
+    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1')
+).transform_calculate(
+    y=alt.datum.y1*amp/vol_per_point_ch1
+)
+
+line2 = base.mark_line(clip=True, color='blue').encode(
+    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH2')
+).transform_calculate(
+    y=alt.datum.y2*amp/vol_per_point_ch2
+)    
+
+# c = xgrid_lines + ygrid_lines +line1 + line2
+
+c = alt.layer(xgrid_lines, ygrid_lines, line1, line2)
 
 main_dsp.altair_chart(c, use_container_width=False)
