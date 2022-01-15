@@ -47,7 +47,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, C, R):
 #   return pf
   return x, y1, y2
 
-@st.cache
+# @st.cache
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
 
