@@ -171,7 +171,7 @@ offset = 0
 base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
 ).transform_calculate(
-    x=alt.datum.x + offset
+    x=alt.datum.x
 ).properties(width=550, height=550)
 
 # slider = alt.binding_range(min=-h_total_point//2, max=h_total_point//2, step=1, name='horizontal position')
