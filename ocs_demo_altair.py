@@ -138,7 +138,6 @@ total_sub_ygrid = v_total_div*sub_grid_ticks+1
 
 ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
     y=alt.Y('val:Q',
-            scale=alt.Scale(domain=ylim),
             axis=alt.Axis(title=None,
                           grid=True,
                           gridColor='gray',
@@ -147,13 +146,13 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
                           ticks=False,
                           # tickMinStep=sub_grid_ticks,
                           tickCount=total_sub_ygrid
+            scale=alt.Scale(domain=ylim),
             )
     )
 )
 
 xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
     x=alt.X('val:Q',
-            scale=alt.Scale(domain=xlim),
             axis=alt.Axis(title=None,
                           grid=True,
                           gridColor='gray',
@@ -161,6 +160,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
                           labels=False,
                           ticks=False,
                           tickCount=total_sub_xgrid,
+            scale=alt.Scale(domain=xlim),
             )
     )
 )    
@@ -169,7 +169,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 offset = 300
 base = alt.Chart(pf_wave).encode(
     alt.X('t:Q', 
-#           axis=alt.Axis(title=None, grid=True), 
+          axis=alt.Axis(title=None, grid=False), 
           scale=alt.Scale(domain=xlim), 
          ) 
 ).transform_calculate(
@@ -177,19 +177,25 @@ base = alt.Chart(pf_wave).encode(
 ).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
-    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1'),
-    color=alt.Color(
+    y=alt.Y('y:Q', 
+            axis=alt.Axis(title=None, grid=False), 
+            scale=alt.Scale(domain=ylim), 
+            title='CH1',
+    ),color=alt.Color(
         'label1', 
         legend=alt.Legend(title="", orient='none', legendX=500, legendY=5, fillColor='black', labelColor='white'), 
         scale=alt.Scale(domain=domain, range=range_)
-    )
+    ),
 ).transform_calculate(
     y=alt.datum.y1*amp/vol_per_point_ch1
 )
 
 line2 = base.mark_line(clip=True, color='blue').encode(
-    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH2'),
-    color=alt.Color(
+    y=alt.Y('y:Q', 
+            axis=alt.Axis(title=None, grid=False), 
+            scale=alt.Scale(domain=ylim), 
+            title='CH2', 
+    ),color=alt.Color(
         'label2', 
         legend=alt.Legend(title="", orient='none', legendX=500, legendY=20, fillColor='black', labelColor='white'),
         scale=alt.Scale(domain=domain, range=range_)
