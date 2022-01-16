@@ -163,7 +163,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
                           tickCount=total_sub_xgrid, 
                  ),
             scale=alt.Scale(domain=xlim),
-            )
+#             )
     )
 )    
 
