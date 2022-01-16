@@ -173,10 +173,10 @@ base = alt.Chart(pf_wave).encode(
           title='TIME',
     ) 
 ).transform_calculate(
-    x='datum.t*2+100'
+#     x='datum.t*2+100'
 #     x='datum.t+100'
 #     x=alt.datum.t+100
-#     x=alt.datum.t*2
+    x=alt.datum.t*2+100
 )
 
 line1 = base.mark_line(clip=True, color='orange').encode(
