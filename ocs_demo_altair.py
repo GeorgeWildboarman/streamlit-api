@@ -181,7 +181,7 @@ base = alt.Chart(pf_wave).encode(
 # ).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
-    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1')
+    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1'),
     color=alt.Color(
         'label1', 
         legend=alt.Legend(title="", orient='none', legendX=500, legendY=5, fillColor='black', labelColor='white'), 
@@ -192,7 +192,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
 )
 
 line2 = base.mark_line(clip=True, color='blue').encode(
-    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH2')
+    y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH2'),
     color=alt.Color(
         'label2', 
         legend=alt.Legend(title="", orient='none', legendX=500, legendY=20, fillColor='black', labelColor='white'),
