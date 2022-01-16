@@ -170,10 +170,10 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 offset = 0
 #  axis=alt.Axis(title=None, grid=True)
 base = alt.Chart(pf_wave).encode(
-    x=alt.X('x:Q', scale=alt.Scale(domain=xlim)) 
+    alt.X('x:Q', scale=alt.Scale(domain=xlim)) 
 ).transform_calculate(
     x=alt.datum.x+20
-).properties(width=550, height=550)
+).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1'),
