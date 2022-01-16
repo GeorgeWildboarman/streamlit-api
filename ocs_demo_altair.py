@@ -200,7 +200,8 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 
 # c = xgrid_lines + ygrid_lines +line1 + line2
 
-c = alt.layer(xgrid_lines, ygrid_lines).configure(background='black')
+# c = alt.layer(xgrid_lines, ygrid_lines).configure(background='black')
+c = alt.layer(line1, line2).configure(background='black')
 # c = alt.layer(xgrid_lines, ygrid_lines, line1, line2).configure(background='black')
 
 main_dsp.altair_chart(c, use_container_width=False)
