@@ -170,7 +170,7 @@ offset = 300
 base = alt.Chart(pf_wave).encode(
     alt.X('t:Q', 
 #           axis=alt.Axis(title=None, grid=True), 
-#           scale=alt.Scale(domain=xlim), 
+          scale=alt.Scale(domain=xlim), 
          ) 
 ).transform_calculate(
     t=alt.datum.x
