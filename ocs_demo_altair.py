@@ -37,13 +37,13 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   
   omega = 2*np.pi*fq
   # Generate sine wave
-  y1 = np.sin(omega*x*time_per_point)
+  y1 = np.sin(omega*t*time_per_point)
   
   # Transformed wave
-  y2 = gain*np.sin(omega*x*time_per_point+theta)
+  y2 = gain*np.sin(omega*t*time_per_point+theta)
 
   # Create pandas DF and return it
-  return pd.DataFrame({'t':t, 'y1':y1, 'y2':y2, 'label1':['CH1']*len(x), 'label2':['CH2']*len(x)})
+  return pd.DataFrame({'t':t, 'y1':y1, 'y2':y2, 'label1':['CH1']*len(t), 'label2':['CH2']*len(t)})
   
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
