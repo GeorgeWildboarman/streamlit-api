@@ -167,7 +167,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 offset = 0
 base = alt.Chart(pf_wave).encode(
     alt.X('t:Q', 
-          axis=alt.Axis(title=None, grid=False, labels=False), 
+          axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
           scale=alt.Scale(domain=xlim), 
     ) 
 ).transform_calculate(
@@ -176,7 +176,7 @@ base = alt.Chart(pf_wave).encode(
 
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', 
-            axis=alt.Axis(title=None, grid=False, labels=False), 
+            axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
             scale=alt.Scale(domain=ylim), 
             title='CH1',
     ),color=alt.Color(
@@ -190,7 +190,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
 
 line2 = base.mark_line(clip=True, color='blue').encode(
     y=alt.Y('y:Q', 
-            axis=alt.Axis(title=None, grid=False, labels=False), 
+            axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
             scale=alt.Scale(domain=ylim), 
             title='CH2', 
     ),color=alt.Color(
