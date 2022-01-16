@@ -146,9 +146,7 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
                           ticks=False,
                           # tickMinStep=sub_grid_ticks,
                           tickCount=total_sub_ygrid,
-                 ),
-            scale=alt.Scale(domain=ylim),
-#             )
+            ), scale=alt.Scale(domain=ylim),
     )
 )
 
@@ -161,9 +159,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
                           labels=False,
                           ticks=False,
                           tickCount=total_sub_xgrid, 
-                 ),
-            scale=alt.Scale(domain=xlim),
-#             )
+            ), scale=alt.Scale(domain=xlim),
     )
 )    
 
@@ -173,14 +169,14 @@ base = alt.Chart(pf_wave).encode(
     alt.X('t:Q', 
           axis=alt.Axis(title=None, grid=False), 
           scale=alt.Scale(domain=xlim), 
-         ) 
+    ) 
 ).transform_calculate(
     t=alt.datum.x + offset
-).properties(width=550, height=400)
+)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', 
-            axis=alt.Axis(title=None, grid=False), 
+            axis=alt.Axis(title=None, grid=False, labels=False), 
             scale=alt.Scale(domain=ylim), 
             title='CH1',
     ),color=alt.Color(
@@ -194,7 +190,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
 
 line2 = base.mark_line(clip=True, color='blue').encode(
     y=alt.Y('y:Q', 
-            axis=alt.Axis(title=None, grid=False), 
+            axis=alt.Axis(title=None, grid=False, labels=False), 
             scale=alt.Scale(domain=ylim), 
             title='CH2', 
     ),color=alt.Color(
@@ -209,7 +205,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 # c = xgrid_lines + ygrid_lines +line1 + line2
 
 # c = alt.layer(xgrid_lines, ygrid_lines).configure(background='black')
-c = alt.layer(line1, line2).configure(background='black')
+c = alt.layer(line1, line2).configure(background='black').properties(width=550, height=400)
 # c = alt.layer(xgrid_lines, ygrid_lines, line1, line2).configure(background='black')
 
 main_dsp.altair_chart(c, use_container_width=False)
