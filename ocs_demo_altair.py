@@ -33,7 +33,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   v2 : sine wave function transformed by CRx3 filter 
   '''
   # horizontal points in OSC display coordinate
-  x = h_point_array(h_total_point)
+  t = h_point_array(h_total_point)
   
   omega = 2*np.pi*fq
   # Generate sine wave
@@ -43,7 +43,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   y2 = gain*np.sin(omega*x*time_per_point+theta)
 
   # Create pandas DF and return it
-  return pd.DataFrame({'x':x, 'y1':y1, 'y2':y2, 'label1':['CH1']*len(x), 'label2':['CH2']*len(x)})
+  return pd.DataFrame({'t':t, 'y1':y1, 'y2':y2, 'label1':['CH1']*len(x), 'label2':['CH2']*len(x)})
   
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
@@ -67,6 +67,7 @@ v_total_point = v_point_per_div * v_total_div
 
 # Create sidebar for FG front panel 
 st.sidebar.title('Function Generator')
+
 # Select params on FG
 fq = st.sidebar.number_input('Frequency [Hz]', value=10000)
 amp = st.sidebar.number_input('Amp Voltage [V]', value=2)
@@ -166,12 +167,13 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 # Draw waveforms
 offset = 0
 base = alt.Chart(pf_wave).encode(
-    x=alt.X('t:Q', 
+    x=alt.X('x:Q', 
           axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
           scale=alt.Scale(domain=xlim), 
+          title='TIME',
     ) 
 ).transform_calculate(
-    t=alt.datum.x + offset
+    x=alt.datum.t + offset
 )
 
 line1 = base.mark_line(clip=True, color='orange').encode(
