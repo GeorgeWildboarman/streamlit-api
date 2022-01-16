@@ -43,7 +43,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   y2 = gain*np.sin(omega*x*time_per_point+theta)
 
   # Create pandas DF and return it
-  return pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
+  return pd.DataFrame({'x':x, 'y1':y1, 'y2':y2, 'label1':['CH1']*len(x), 'label2':['CH2']*len(x)})
   
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
@@ -119,6 +119,13 @@ pf_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
 xlim = (-h_total_point//2, h_total_point//2)
 ylim = (-v_total_point//2, v_total_point//2)
 
+# Legend Setting
+domain = ['CH1', 'CH2']
+range_ = ['orange', 'deepskyblue']
+# 'deepskyblue'
+# 'dodgerblue'
+# 'royalblue'
+
 # Draw grid lines
 sub_grid_ticks = 5
 h_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
@@ -160,27 +167,37 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 )    
 
 # Draw waveforms
-# base = alt.Chart(pf_wave).encode(
-#     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
-# ).properties(width=550, height=550)
-
-slider = alt.binding_range(min=-h_total_point//2, max=h_total_point//2, step=1, name='horizontal position')
-selector = alt.selection_single(name='SelectorName', fields=['offset'], bind=slider, init={'offset':20})
-
 base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
-).add_selection(selector).transform_calculate(
-    x=alt.datum.x + selector.offset
-).properties(width=550, height=400)
+).properties(width=550, height=550)
+
+# slider = alt.binding_range(min=-h_total_point//2, max=h_total_point//2, step=1, name='horizontal position')
+# selector = alt.selection_single(name='SelectorName', fields=['offset'], bind=slider, init={'offset':20})
+
+# base = alt.Chart(pf_wave).encode(
+#     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
+# ).add_selection(selector).transform_calculate(
+#     x=alt.datum.x + selector.offset
+# ).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1')
+    color=alt.Color(
+        'label1', 
+        legend=alt.Legend(title="", orient='none', legendX=500, legendY=5, fillColor='black', labelColor='white'), 
+        scale=alt.Scale(domain=domain, range=range_)
+    )
 ).transform_calculate(
     y=alt.datum.y1*amp/vol_per_point_ch1
 )
 
 line2 = base.mark_line(clip=True, color='blue').encode(
     y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH2')
+    color=alt.Color(
+        'label2', 
+        legend=alt.Legend(title="", orient='none', legendX=500, legendY=20, fillColor='black', labelColor='white'),
+        scale=alt.Scale(domain=domain, range=range_)
+    )
 ).transform_calculate(
     y=alt.datum.y2*amp/vol_per_point_ch2
 )    
