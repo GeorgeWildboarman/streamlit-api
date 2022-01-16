@@ -71,8 +71,8 @@ v_total_point = v_point_per_div * v_total_div
 st.sidebar.title('Function Generator')
 
 # Select params on FG
-fq = st.sidebar.number_input('Frequency [Hz]', value=10000)
-amp = st.sidebar.number_input('Amp Voltage [V]', value=2)
+fq = st.sidebar.number_input('Frequency [Hz]', value=10000, step=10)
+amp = st.sidebar.number_input('Amp Voltage [V]', value=2, step=1)
 
 # Display title
 st.title('Oscilloscope')
@@ -174,9 +174,6 @@ base = alt.Chart(pf_wave).encode(
           title='TIME',
     ) 
 ).transform_calculate(
-#     x='datum.t*2+100'
-#     x='datum.t+100'
-#     x=alt.datum.t+100
     x=alt.datum.t*1+h_offset
 )
 
