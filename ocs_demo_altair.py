@@ -27,23 +27,25 @@ def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
 @st.cache
 def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   '''
-  Create pandas DF with 3 columns: x, v1, v2
-  x  : horizontal point in OCS display coordinate 
+  Create pandas DF with 5 columns: t, v1, v2, label1, label2
+  t  : horizontal point in OCS display coordinate 
   v1 : sine wave function
   v2 : sine wave function transformed by CRx3 filter 
+  label1 : Norminal column for fig legend in Altair
+  label2 : Norminal column for fig legend in Altair
   '''
   # horizontal points in OSC display coordinate
   t = h_point_array(h_total_point)
   
   omega = 2*np.pi*fq
   # Generate sine wave
-  y1 = np.sin(omega*t*time_per_point)
+  v1 = np.sin(omega*t*time_per_point)
   
   # Transformed wave
-  y2 = gain*np.sin(omega*t*time_per_point+theta)
+  v2 = gain*np.sin(omega*t*time_per_point+theta)
 
   # Create pandas DF and return it
-  return pd.DataFrame({'t':t, 'y1':y1, 'y2':y2, 'label1':['CH1']*len(t), 'label2':['CH2']*len(t)})
+  return pd.DataFrame({'t':t, 'v1':v1, 'v2':v2, 'label1':['CH1']*len(t), 'label2':['CH2']*len(t)})
   
 def div_vals():
   dict_vol ={'5V': 5, '2V': 2, '1V': 1, '500mV': .5, '200mV': .2, '100mV': .1, '50mV': .05, '20mV': .02}
@@ -108,9 +110,6 @@ with col3:
 # Generate wave function
 gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
 pf_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
-# x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, 0.01e-6, 6.8e3)
-# x, y1, y2 = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
-# pf_wave = pd.DataFrame({'x':x, 'y1':y1, 'y2':y2})
 
 # -------------------------------------
 # Show fig as OSC Display
@@ -190,7 +189,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
         scale=alt.Scale(domain=domain, range=range_)
     ),
 ).transform_calculate(
-    y=alt.datum.y1*amp/vol_per_point_ch1
+    y=alt.datum.v1*amp/vol_per_point_ch1
 )
 
 line2 = base.mark_line(clip=True, color='blue').encode(
@@ -204,7 +203,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
         scale=alt.Scale(domain=domain, range=range_)
     )
 ).transform_calculate(
-    y=alt.datum.y2*amp/vol_per_point_ch2
+    y=alt.datum.v2*amp/vol_per_point_ch2
 )    
 
 # c = xgrid_lines + ygrid_lines +line1 + line2
