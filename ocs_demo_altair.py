@@ -171,17 +171,8 @@ offset = 0
 base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
 ).transform_calculate(
-    x=alt.datum.x
+    x=alt.datum.x+20
 ).properties(width=550, height=550)
-
-# slider = alt.binding_range(min=-h_total_point//2, max=h_total_point//2, step=1, name='horizontal position')
-# selector = alt.selection_single(name='SelectorName', fields=['offset'], bind=slider, init={'offset':20})
-
-# base = alt.Chart(pf_wave).encode(
-#     x=alt.X('x:Q', axis=alt.Axis(title=None, grid=True), scale=alt.Scale(domain=xlim)) 
-# ).add_selection(selector).transform_calculate(
-#     x=alt.datum.x + selector.offset
-# ).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', scale=alt.Scale(domain=ylim), title='CH1'),
