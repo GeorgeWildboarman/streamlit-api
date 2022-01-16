@@ -148,7 +148,7 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
                           tickCount=total_sub_ygrid,
                  ),
             scale=alt.Scale(domain=ylim),
-            )
+#             )
     )
 )
 
