@@ -164,10 +164,10 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 )    
 
 # Draw waveforms
-offset = 300
+offset = 0
 base = alt.Chart(pf_wave).encode(
     alt.X('t:Q', 
-          axis=alt.Axis(title=None, grid=False), 
+          axis=alt.Axis(title=None, grid=False, labels=False), 
           scale=alt.Scale(domain=xlim), 
     ) 
 ).transform_calculate(
