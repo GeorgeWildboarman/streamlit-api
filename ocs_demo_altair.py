@@ -136,7 +136,6 @@ v_grid_val = np.linspace(*ylim, v_total_div+1, endpoint=True)
 pf_ygrid = pd.DataFrame({'val':v_grid_val})
 total_sub_ygrid = v_total_div*sub_grid_ticks+1
 
-
 ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
     y=alt.Y('val:Q',
             scale=alt.Scale(domain=ylim),
@@ -174,7 +173,7 @@ base = alt.Chart(pf_wave).encode(
 #           scale=alt.Scale(domain=xlim), 
          ) 
 ).transform_calculate(
-    x=alt.datum.x+20
+    x=alt.datum.x
 ).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
