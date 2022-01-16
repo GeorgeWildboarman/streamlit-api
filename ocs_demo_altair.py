@@ -165,7 +165,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 )    
 
 # Draw waveforms
-offset = 0
+offset = 300
 base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', 
           axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
@@ -176,7 +176,7 @@ base = alt.Chart(pf_wave).encode(
 #     x='datum.t*2+100'
 #     x='datum.t+100'
 #     x=alt.datum.t+100
-    x=alt.datum.t*2+100
+    x=alt.datum.t*2+offset
 )
 
 line1 = base.mark_line(clip=True, color='orange').encode(
