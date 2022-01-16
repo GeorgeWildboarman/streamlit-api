@@ -145,7 +145,8 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
                           labels=False,
                           ticks=False,
                           # tickMinStep=sub_grid_ticks,
-                          tickCount=total_sub_ygrid
+                          tickCount=total_sub_ygrid,
+                 ),
             scale=alt.Scale(domain=ylim),
             )
     )
@@ -159,7 +160,8 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
                           gridDash=[2],
                           labels=False,
                           ticks=False,
-                          tickCount=total_sub_xgrid,
+                          tickCount=total_sub_xgrid, 
+                 ),
             scale=alt.Scale(domain=xlim),
             )
     )
