@@ -81,6 +81,12 @@ st.title('Oscilloscope')
 main_dsp = st.container()
 main_dsp.header('Display')
 
+# vertical and horizontal ranges
+xlim = (-h_total_point//2, h_total_point//2)
+ylim = (-v_total_point//2, v_total_point//2)
+
+# Slider for horizontal position
+h_offset = st.slider('Horizontal Position', *xlim, 0, 1) 
 # Create OSC ADJ Panel
 col1, col2, col3 = st.columns(3)
 
@@ -114,11 +120,6 @@ pf_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
 # -------------------------------------
 # Show fig as OSC Display
 # -------------------------------------
-
-# vertical and horizontal ranges
-xlim = (-h_total_point//2, h_total_point//2)
-ylim = (-v_total_point//2, v_total_point//2)
-
 # Legend Setting
 domain = ['CH1', 'CH2']
 range_ = ['orange', 'deepskyblue']
