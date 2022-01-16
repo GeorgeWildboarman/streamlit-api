@@ -173,7 +173,7 @@ base = alt.Chart(pf_wave).encode(
           title='TIME',
     ) 
 ).transform_calculate(
-    x='datum.t+1'
+    x='datum.t+1.0'
 #     x=alt.datum.t*2
 )
 
