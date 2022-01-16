@@ -180,7 +180,7 @@ base = alt.Chart(pf_wave).encode(
 
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', 
-            axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
+#             axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
             scale=alt.Scale(domain=ylim), 
             title='CH1',
     ),color=alt.Color(
@@ -194,7 +194,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
 
 line2 = base.mark_line(clip=True, color='blue').encode(
     y=alt.Y('y:Q', 
-            axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
+#             axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
             scale=alt.Scale(domain=ylim), 
             title='CH2', 
     ),color=alt.Color(
@@ -211,7 +211,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 # c = alt.layer(xgrid_lines, ygrid_lines).configure(background='black')
 # c = alt.layer(line1, line2).configure(background='black').properties(width=550, height=400)
 # c = alt.layer(xgrid_lines, ygrid_lines, line1, line2).configure(background='black').properties(width=550, height=400)
-# c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
-c = alt.layer(line1, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
+c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
+# c = alt.layer(line1, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
 
 main_dsp.altair_chart(c, use_container_width=False)
