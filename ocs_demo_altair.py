@@ -87,6 +87,7 @@ ylim = (-v_total_point//2, v_total_point//2)
 
 # Slider for horizontal position
 h_offset = st.slider('Horizontal Position', *xlim, 0, 1) 
+
 # Create OSC ADJ Panel
 col1, col2, col3 = st.columns(3)
 
@@ -165,7 +166,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 )    
 
 # Draw waveforms
-offset = 300
+# offset = 300
 base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', 
 #           axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
@@ -176,7 +177,7 @@ base = alt.Chart(pf_wave).encode(
 #     x='datum.t*2+100'
 #     x='datum.t+100'
 #     x=alt.datum.t+100
-    x=alt.datum.t*1+offset
+    x=alt.datum.t*1+h_offset
 )
 
 line1 = base.mark_line(clip=True, color='orange').encode(
@@ -209,10 +210,6 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 
 # c = xgrid_lines + ygrid_lines +line1 + line2
 
-# c = alt.layer(xgrid_lines, ygrid_lines).configure(background='black')
-# c = alt.layer(line1, line2).configure(background='black').properties(width=550, height=400)
-# c = alt.layer(xgrid_lines, ygrid_lines, line1, line2).configure(background='black').properties(width=550, height=400)
 c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
-# c = alt.layer(line1, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
-
 main_dsp.altair_chart(c, use_container_width=False)
+
