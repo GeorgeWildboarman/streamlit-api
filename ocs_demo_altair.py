@@ -173,7 +173,7 @@ base = alt.Chart(pf_wave).encode(
           scale=alt.Scale(domain=xlim), 
          ) 
 ).transform_calculate(
-    t=alt.datum.x
+    t=alt.datum.x + offset
 ).properties(width=550, height=400)
 
 line1 = base.mark_line(clip=True, color='orange').encode(
