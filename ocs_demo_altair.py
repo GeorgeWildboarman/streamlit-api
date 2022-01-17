@@ -223,6 +223,6 @@ text = alt.Chart(df_txt).mark_text(baseline='top', color='red').encode(
 )
 
 
-c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=550, height=400)
+c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=550, height=600)
 main_dsp.altair_chart(c, use_container_width=False)
 
