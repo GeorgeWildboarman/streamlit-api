@@ -77,7 +77,7 @@ amp = st.sidebar.number_input('Amp Voltage [V]', value=2, step=1)
 # Create OSC Display
 main_dsp = st.container()
 main_dsp.title('Oscilloscope')
-main_dsp.header('Display')
+# main_dsp.header('Display')
 
 # vertical and horizontal ranges
 xlim = (-h_total_point//2, h_total_point//2)
