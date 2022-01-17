@@ -74,11 +74,9 @@ st.sidebar.title('Function Generator')
 fq = st.sidebar.number_input('Frequency [Hz]', value=10000, step=10)
 amp = st.sidebar.number_input('Amp Voltage [V]', value=2, step=1)
 
-# Display title
-st.title('Oscilloscope')
-
 # Create OSC Display
 main_dsp = st.container()
+main_dsp.title('Oscilloscope')
 main_dsp.header('Display')
 
 # vertical and horizontal ranges
