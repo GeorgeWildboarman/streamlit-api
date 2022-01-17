@@ -116,7 +116,7 @@ with col3:
 
 # Generate wave function
 gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
-pf_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
 
 # -------------------------------------
 # Show fig as OSC Display
@@ -131,14 +131,14 @@ range_ = ['orange', 'deepskyblue']
 # Draw grid lines
 sub_grid_ticks = 5
 h_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
-pf_xgrid = pd.DataFrame({'val':h_grid_val})
+pd_xgrid = pd.DataFrame({'val':h_grid_val})
 total_sub_xgrid = h_total_div*sub_grid_ticks+1
 
 v_grid_val = np.linspace(*ylim, v_total_div+1, endpoint=True)
-pf_ygrid = pd.DataFrame({'val':v_grid_val})
+pd_ygrid = pd.DataFrame({'val':v_grid_val})
 total_sub_ygrid = v_total_div*sub_grid_ticks+1
 
-ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
+ygrid_lines = alt.Chart(pd_ygrid).mark_rule(color='white').encode(
     y=alt.Y('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
@@ -152,7 +152,7 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
     )
 )
 
-xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
+xgrid_lines = alt.Chart(pd_xgrid).mark_rule(color='white').encode(
     x=alt.X('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
@@ -167,7 +167,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
 
 # Draw waveforms
 # offset = 300
-base = alt.Chart(pf_wave).encode(
+base = alt.Chart(pd_wave).encode(
     x=alt.X('x:Q', 
 #           axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
           scale=alt.Scale(domain=xlim), 
@@ -205,8 +205,24 @@ line2 = base.mark_line(clip=True, color='blue').encode(
     y=alt.datum.v2*amp/vol_per_point_ch2
 )    
 
-# c = xgrid_lines + ygrid_lines +line1 + line2
+# Write info on display
+df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
-c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, ).configure(background='black').properties(width=550, height=400)
+info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}Frequency={:>7,} Hz'.format(vol_ind_ch1, vol_ind_ch2, time_ind, fq)
+df_txt.loc['info_1']= [0, ylim[0]+v_point_per_div*(-.1), info]
+
+info = strtime_now_jst()
+df_txt.loc['info_2'] = [xlim[0]+h_point_per_div*1.5, ylim[1]+v_point_per_div*(.3), info]
+
+df_txt.loc['info_3'] = [0, ylim[1]+v_point_per_div*(.3), 'Sample']
+
+text = alt.Chart(df_txt).mark_text(baseline='top', color='red').encode(
+    alt.X('x:Q'),
+    alt.Y('y:Q'),
+    text='txt:N'
+)
+
+
+c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=550, height=400)
 main_dsp.altair_chart(c, use_container_width=False)
 
