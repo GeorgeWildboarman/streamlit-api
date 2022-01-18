@@ -337,17 +337,26 @@ info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}Frequency={:>7,} Hz
 df_txt.loc['info_1']= [xlim[0], ylim[0]+v_point_per_div*(-.1), info]
 
 info = strtime_now_jst()
-df_txt.loc['info_2'] = [xlim[0], ylim[1]+v_point_per_div*(.3), info]
+df_txt.loc['info_2'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
+df_txt.loc['info_3'] = [0, ylim[1]+v_point_per_div*.2, 'Sample']
+df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
 
-df_txt.loc['info_3'] = [0, ylim[1]+v_point_per_div*(.3), 'Sample']
-
-text = alt.Chart(df_txt).mark_text(align='left', baseline='top', color='red').encode(
+text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
     alt.X('x:Q'),
     alt.Y('y:Q'),
     text='txt:N'
 )
 
 
-c = alt.layer(line1, line2, v_grid_lines, h_grid_lines, text, v_zoro_line, h_zoro_line_ch1).configure(background='black').properties(width=fig_width, height=fig_height)
+c = alt.layer(
+  line1,
+  line2,
+  v_grid_lines,
+  h_grid_lines,
+  text,
+  v_zoro_line,
+  h_zoro_line_ch1,
+).configure(background='black').properties(width=fig_width, height=fig_height)
+
 main_dsp.altair_chart(c, use_container_width=False)
 
