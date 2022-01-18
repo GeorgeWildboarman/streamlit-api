@@ -250,7 +250,7 @@ v_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
 pf_vgrid = pd.DataFrame({'val':v_grid_val})
 total_sub_vgrid = h_total_div*sub_grid_ticks+1
 
-vgrid_lines = alt.Chart(pf_vgrid).mark_rule(color='white').encode(
+v_grid_lines = alt.Chart(pf_vgrid).mark_rule(color='white').encode(
     x=alt.X('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
