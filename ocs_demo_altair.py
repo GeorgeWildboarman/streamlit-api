@@ -47,7 +47,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   # Create pandas DF and return it
   return pd.DataFrame({'t':t, 'v1':v1, 'v2':v2, 'label1':['CH1']*len(t), 'label2':['CH2']*len(t)})
 
-@st.cache
+# @st.cache
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
