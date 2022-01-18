@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 
-def pnt_now(text=''):
+def pnt_now(text='Timestamp'):
   DIFF_JST_FROM_UTC = 9
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   st.write(text,dt_now.strftime('%Y-%m-%d %H:%M:%S'))
@@ -24,7 +24,8 @@ def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
   be = (omega*C*R)**3/(((omega*C*R)**3-5*omega*C*R)-1j*(6*(omega*C*R)**2-1))
   return np.abs(be), np.arctan2(be.imag, be.real)
 
-@st.cache
+
+@st.cache(suppress_st_warning=True)
 def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   '''
   Create pandas DF with 5 columns: t, v1, v2, label1, label2
@@ -34,6 +35,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   label1 : Norminal column for fig legend in Altair
   label2 : Norminal column for fig legend in Altair
   '''
+  pnt_now('Run[sin_func_gen]')
   # horizontal points in OSC display coordinate
   t = h_point_array(h_total_point*2)
   
@@ -98,6 +100,7 @@ def read_waveform_file(filename='A0000CH1.CSV'):
 
   return df_waveform
 
+@st.cache(suppress_st_warning=True)
 def mmt_waveform(time_per_point=1.0e-6):
   '''
   Create pandas DF with 5 columns: t, v1, v2, label1, label2
@@ -107,6 +110,7 @@ def mmt_waveform(time_per_point=1.0e-6):
   label1 : Norminal column for fig legend in Altair
   label2 : Norminal column for fig legend in Altair
   '''
+  pnt_now('Run[mmt_waveform]')
   # read waveform file obtained from OSC:DCS-4605 
   df_waveform = read_waveform_file(filename='A0000CH1.CSV')
   # Arrange for display  
