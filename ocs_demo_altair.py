@@ -226,6 +226,7 @@ range_ = ['orange', 'deepskyblue']
 
 # Draw grid lines
 sub_grid_ticks = 5
+grid_line_width = 0.5
 h_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
 pf_xgrid = pd.DataFrame({'val':h_grid_val})
 total_sub_xgrid = h_total_div*sub_grid_ticks+1
@@ -244,7 +245,8 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
                           ticks=False,
                           tickCount=total_sub_ygrid,
             ), scale=alt.Scale(domain=ylim),
-    )
+    ),
+    size = alt.value(grid_line_width)
 )
 
 xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
@@ -257,13 +259,14 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
                           ticks=False,
                           tickCount=total_sub_xgrid, 
             ), scale=alt.Scale(domain=xlim),
-    )
+    ),
+    size = alt.value(grid_line_width)
 )    
 
 # Draw zoro lines
 h_offsett_ch1 = 0
 h_offsett_ch2 = 0
-zoro_line_width = 2
+zoro_line_width = 1
 v_zoro_line = alt.Chart(pd.DataFrame({'val':[0]})).mark_rule(
     color = 'white', 
 ).encode(
