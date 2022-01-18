@@ -152,14 +152,14 @@ fg_panel.title('Function Generator')
 fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, step=10)
 amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
 
-# Add radio to select task
-def task_desc_for_radio(task):
-  if 'gen' in task:
-    return 'Sine wavefrom'
-  elif 'file' in task:
+# Add radio to select wave
+def task_desc_for_radio(wave):
+  if 'sine' in wave:
+    return 'Sine waveform'
+  elif 'osc' in wave:
     return 'Oscillation waveform'
 
-task = fg_panel.radio("Item to display on the screen", ('funcgen', 'wavefile'), 0, format_func=task_desc_for_radio, key='type')
+selected_wave = fg_panel.radio("Select waveform", ('sine', 'oscillation'), 0, format_func=task_desc_for_radio, key='type')
 # fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Create OSC Display
@@ -200,13 +200,13 @@ with col3:
   time_per_point = time_per_div / h_point_per_div
 #   st.write(time_per_div)
 
-if 'gen' in task:
+if 'sine' in selected_wave:
   fq = fq_inp
   amp = amp_inp
   # Generate wave function
   gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
   pf_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
-elif 'file' in task:
+elif 'osc' in selected_wave:
   fq = np.nan
   amp =1
   pf_wave = mmt_waveform(time_per_point)
