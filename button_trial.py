@@ -60,6 +60,10 @@ def read_waveform_file(filename='A0000CH1.CSV'):
 fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
+# Add input to set freq and amp
+fq = fg_panel.number_input('Frequency [Hz]', value=10000, step=10)
+amp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
+
 # Add radio to select task
 def task_desc_for_radio(task):
   if 'gen' in task:
