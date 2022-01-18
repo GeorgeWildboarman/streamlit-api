@@ -271,7 +271,8 @@ base = alt.Chart(pf_wave).encode(
     x=alt.datum.t*1+h_offset
 )
 
-legendX = 600
+legendX = fig_width * 0.9
+legendY = 10
 line1 = base.mark_line(clip=True, color='orange').encode(
     y=alt.Y('y:Q', 
 #             axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
@@ -279,7 +280,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
             title='CH1',
     ),color=alt.Color(
         'label1', 
-        legend=alt.Legend(title="", orient='none', legendX=legendX, legendY=5, fillColor='black', labelColor='white'), 
+        legend=alt.Legend(title="", orient='none', legendX=legendX, legendY=legendY, fillColor='black', labelColor='white'), 
         scale=alt.Scale(domain=domain, range=range_)
     ),
 ).transform_calculate(
@@ -293,7 +294,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
             title='CH2', 
     ),color=alt.Color(
         'label2', 
-        legend=alt.Legend(title="", orient='none', legendX=legendX, legendY=20, fillColor='black', labelColor='white'),
+        legend=alt.Legend(title="", orient='none', legendX=legendX, legendY=legendY+20, fillColor='black', labelColor='white'),
         scale=alt.Scale(domain=domain, range=range_)
     )
 ).transform_calculate(
