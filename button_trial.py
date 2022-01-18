@@ -6,6 +6,7 @@ def h_point_array(h_total_point):
   # horizontal points centering on zero
   return np.arange(-h_total_point//2, h_total_point//2)
 
+@st.cache
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
@@ -56,6 +57,18 @@ def read_waveform_file(filename='A0000CH1.CSV'):
 
   return df_waveform
 
+def mmt_waveform(time_per_point=1.0e-6):
+  df_waveform = read_waveform_file(filename='A0000CH1.CSV')
+  df = pd.DataFrame({
+      't':df_waveform['time[s]']/time_per_point, 
+      'v1':df_waveform['volts[V]'], 
+      'v2':[np.nan]*len(df_waveform), 
+      'label1':['CH1']*len(df_waveform), 
+      'label2':['CH2']*len(df_waveform), 
+      })
+  return df
+
+  
 # Create sidbar to draw FG fromt panel
 fg_panel = st.sidebar
 fg_panel.title('Function Generator')
@@ -82,10 +95,10 @@ if 'gen' in task:
 elif 'file' in task:
   fq = np.nan
   amp =1
-  pf_wave = read_waveform_file(filename='A0000CH1.CSV')
+  pf_wave = mmt_waveform()
   st.write('task : file')
   st.write(pf_wave)
-#   pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+
 st.write('freq:', fq)
 
 st.write('Amp:', amp)
