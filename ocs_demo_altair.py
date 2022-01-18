@@ -35,7 +35,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   label1 : Norminal column for fig legend in Altair
   label2 : Norminal column for fig legend in Altair
   '''
-  pnt_now('Run[sin_func_gen]')
+#   pnt_now('Run[sin_func_gen]')
   # horizontal points in OSC display coordinate
   t = h_point_array(h_total_point*2)
   
@@ -110,7 +110,7 @@ def mmt_waveform(time_per_point=1.0e-6):
   label1 : Norminal column for fig legend in Altair
   label2 : Norminal column for fig legend in Altair
   '''
-  pnt_now('Run[mmt_waveform]')
+#   pnt_now('Run[mmt_waveform]')
   # read waveform file obtained from OSC:DCS-4605 
   df_waveform = read_waveform_file(filename='A0000CH1.CSV')
   # Arrange for display  
@@ -159,18 +159,9 @@ def task_desc_for_radio(task):
   elif 'file' in task:
     return 'wavefrom file'
 
-task = fg_panel.radio("Select task", ('funcgen', 'wavefile'), 1, format_func=task_desc_for_radio, key='type')
-# fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-# fg_panel.write(task)
-
-# ------------------------------------------------------
-# # Create sidebar for FG front panel 
-# st.sidebar.title('Function Generator')
-
-# # Select params on FG
-# fq = st.sidebar.number_input('Frequency [Hz]', value=10000, step=10)
-# amp = st.sidebar.number_input('Amp Voltage [V]', value=2, step=1)
-# ---------------------------------------------------------
+task = fg_panel.radio("Select task", ('funcgen', 'wavefile'), 0, format_func=task_desc_for_radio, key='type')
+fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+fg_panel.write(task)
 
 # Create OSC Display
 main_dsp = st.container()
@@ -210,23 +201,16 @@ with col3:
   time_per_point = time_per_div / h_point_per_div
   st.write(time_per_div)
 
-# # Generate wave function
-# gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
-# pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
-
 if 'gen' in task:
   fq = fq_inp
   amp = amp_inp
   # Generate wave function
   gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
   pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
-  st.write('task : funcgen')
 elif 'file' in task:
   fq = np.nan
-#   fq = fq_inp
   amp =1
   pd_wave = mmt_waveform(time_per_point)
-  st.write('task : file')
 
 # -------------------------------------
 # Show fig as OSC Display
