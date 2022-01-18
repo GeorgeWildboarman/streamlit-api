@@ -214,6 +214,9 @@ elif 'file' in task:
 # -------------------------------------
 # Show fig as OSC Display
 # -------------------------------------
+# Fig size
+fig_height = 600
+fig_width =600
 # Legend Setting
 domain = ['CH1', 'CH2']
 range_ = ['orange', 'deepskyblue']
@@ -275,7 +278,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
             title='CH1',
     ),color=alt.Color(
         'label1', 
-        legend=alt.Legend(title="", orient='none', legendX=h_total_point, legendY=5, fillColor='black', labelColor='white'), 
+        legend=alt.Legend(title="", orient='none', legendX=xlim[1], legendY=5, fillColor='black', labelColor='white'), 
         scale=alt.Scale(domain=domain, range=range_)
     ),
 ).transform_calculate(
@@ -289,7 +292,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
             title='CH2', 
     ),color=alt.Color(
         'label2', 
-        legend=alt.Legend(title="", orient='none', legendX=h_total_point, legendY=20, fillColor='black', labelColor='white'),
+        legend=alt.Legend(title="", orient='none', legendX=xlim[1], legendY=20, fillColor='black', labelColor='white'),
         scale=alt.Scale(domain=domain, range=range_)
     )
 ).transform_calculate(
@@ -314,6 +317,6 @@ text = alt.Chart(df_txt).mark_text(align='left', baseline='top', color='red').en
 )
 
 
-c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=650, height=600)
+c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=fig_width, height=fig_height)
 main_dsp.altair_chart(c, use_container_width=False)
 
