@@ -18,7 +18,7 @@ def h_point_array(h_total_point):
   return np.arange(-h_total_point//2, h_total_point//2)
 
 # @st.cache(allow_output_mutation=True)
-@st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=False)
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
