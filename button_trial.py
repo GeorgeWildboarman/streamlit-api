@@ -82,9 +82,10 @@ if 'gen' in task:
 elif 'file' in task:
   fq = np.nan
   amp =1
-  read_waveform_file(filename='A0000CH1.CSV')
+  pf_wave = read_waveform_file(filename='A0000CH1.CSV')
   st.write('task : file')
-  
+  st.write(pf_wave)
+#   pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
 st.write('freq:', fq)
 
 st.write('Amp:', amp)
