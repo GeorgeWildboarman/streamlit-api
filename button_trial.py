@@ -56,14 +56,19 @@ def read_waveform_file(filename='A0000CH1.CSV'):
 
   return df_waveform
 
+# Create sidbar to draw FG fromt panel
+fg_panel = st.sidebar
+fg_panel.title('Function Generator')
+
+# Add radio to select task
 def task_desc_for_radio(task):
   if 'gen' in task:
     return 'Wave from funcgen'
   elif 'file' in task:
     return 'wavefrom file'
 
-task = st.radio("Select task", ('funcgen', 'wavefile'), 1, format_func=task_desc_for_radio, key='type')
+task = fg_panel.radio("Select task", ('funcgen', 'wavefile'), 1, format_func=task_desc_for_radio, key='type')
+fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+fg_panel.write(task)
 
-st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
-st.write(task)
