@@ -22,8 +22,8 @@ def h_point_array(h_total_point):
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
-#   pnt_now()
-  st.write('chash miss')
+  pnt_now()
+#   st.write('chash miss')
   
   df=pd.read_csv(filename, header=None)
 
