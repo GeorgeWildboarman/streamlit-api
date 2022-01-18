@@ -153,13 +153,13 @@ fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, step=10)
 amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
 
 # Add radio to select wave
-def task_desc_for_radio(wave):
+def format_selected_wave(wave):
   if 'sine' in wave:
-    return 'Sine waveform'
+    return format('Sine waveform', '<20')
   elif 'osc' in wave:
-    return 'Oscillation waveform'
+    return format('Oscillation waveform', '<20')
 
-selected_wave = fg_panel.radio("Select waveform", ('sine', 'oscillation'), 0, format_func=task_desc_for_radio, key='type')
+selected_wave = fg_panel.radio("Select waveform", ('sine', 'oscillation'), 0, format_func=format_selected_wave)
 # fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Create OSC Display
