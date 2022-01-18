@@ -334,11 +334,11 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
 info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}Frequency={:>7,} Hz'.format(vol_ind_ch1, vol_ind_ch2, time_ind, fq)
-df_txt.loc['info_1']= [xlim[0], ylim[0]+v_point_per_div*(-.1), info]
+df_txt.loc['info_1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 
 info = strtime_now_jst()
 df_txt.loc['info_2'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
-df_txt.loc['info_3'] = [0, ylim[1]+v_point_per_div*.2, 'Sample']
+df_txt.loc['info_3'] = [xlim[1], ylim[1]+v_point_per_div*.2, 'Sample']
 df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
 
 text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
