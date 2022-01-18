@@ -198,7 +198,7 @@ with col3:
   time_ind = st.selectbox('TIME/DIV', dict_time, 10)
   time_per_div = dict_time.get(time_ind)
   time_per_point = time_per_div / h_point_per_div
-  st.write(time_per_div)
+#   st.write(time_per_div)
 
 if 'gen' in task:
   fq = fq_inp
