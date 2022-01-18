@@ -16,8 +16,8 @@ def strtime_now_jst():
 
 @st.cache
 def h_point_array(h_total_point):
-  # horizontal points in OSC display coordinate
-  return np.arange(-h_total_point, h_total_point+1)
+  # horizontal points centering on zero
+  return np.arange(-h_total_point//2, h_total_point//2)
 
 def cal_gain_and_phase(fq, C=0.01e-6, R=6.8e3):
   omega = 2*np.pi*fq
@@ -35,7 +35,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   label2 : Norminal column for fig legend in Altair
   '''
   # horizontal points in OSC display coordinate
-  t = h_point_array(h_total_point)
+  t = h_point_array(h_total_point*2)
   
   omega = 2*np.pi*fq
   # Generate sine wave
@@ -47,7 +47,7 @@ def sin_func_gen(fq, h_total_point, time_per_point, gain, theta):
   # Create pandas DF and return it
   return pd.DataFrame({'t':t, 'v1':v1, 'v2':v2, 'label1':['CH1']*len(t), 'label2':['CH2']*len(t)})
 
-# @st.cache
+@st.cache
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
