@@ -61,8 +61,8 @@ fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
 # Add input to set freq and amp
-fq = fg_panel.number_input('Frequency [Hz]', value=10000, step=10)
-amp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
+fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, step=10)
+amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
 
 # Add radio to select task
 def task_desc_for_radio(task):
@@ -75,4 +75,15 @@ task = fg_panel.radio("Select task", ('funcgen', 'wavefile'), 1, format_func=tas
 fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 fg_panel.write(task)
 
+if 'gen' in task:
+  fq = fq_inp
+  amp = inp
+  st.write('task : funcgen')
+elif 'file' in task:
+  fq = np.nan
+  amp =1
+  st.write('task : file')
+  
+st.write('freq:', fq)
 
+st.write('Amp:', amp)
