@@ -227,15 +227,12 @@ range_ = ['orange', 'deepskyblue']
 # Draw grid lines
 sub_grid_ticks = 5
 grid_line_width = 0.5
-h_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
-pf_xgrid = pd.DataFrame({'val':h_grid_val})
-total_sub_xgrid = h_total_div*sub_grid_ticks+1
 
-v_grid_val = np.linspace(*ylim, v_total_div+1, endpoint=True)
-pf_ygrid = pd.DataFrame({'val':v_grid_val})
-total_sub_ygrid = v_total_div*sub_grid_ticks+1
+h_grid_val = np.linspace(*ylim, v_total_div+1, endpoint=True)
+pf_hgrid = pd.DataFrame({'val':h_grid_val})
+total_sub_hgrid = v_total_div*sub_grid_ticks+1
 
-ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
+h_grid_lines = alt.Chart(pf_hgrid).mark_rule(color='white').encode(
     y=alt.Y('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
@@ -243,13 +240,17 @@ ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
                           gridDash=[2],
                           labels=False,
                           ticks=False,
-                          tickCount=total_sub_ygrid,
+                          tickCount=total_sub_hgrid,
             ), scale=alt.Scale(domain=ylim),
     ),
     size = alt.value(grid_line_width)
 )
 
-xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
+v_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
+pf_vgrid = pd.DataFrame({'val':v_grid_val})
+total_sub_vgrid = h_total_div*sub_grid_ticks+1
+
+vgrid_lines = alt.Chart(pf_vgrid).mark_rule(color='white').encode(
     x=alt.X('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
@@ -257,7 +258,7 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
                           gridDash=[2],
                           labels=False,
                           ticks=False,
-                          tickCount=total_sub_xgrid, 
+                          tickCount=total_sub_vgrid, 
             ), scale=alt.Scale(domain=xlim),
     ),
     size = alt.value(grid_line_width)
@@ -347,6 +348,6 @@ text = alt.Chart(df_txt).mark_text(align='left', baseline='top', color='red').en
 )
 
 
-c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text, v_zoro_line, h_zoro_line_ch1).configure(background='black').properties(width=fig_width, height=fig_height)
+c = alt.layer(line1, line2, v_grid_lines, h_grid_lines, text, v_zoro_line, h_zoro_line_ch1).configure(background='black').properties(width=fig_width, height=fig_height)
 main_dsp.altair_chart(c, use_container_width=False)
 
