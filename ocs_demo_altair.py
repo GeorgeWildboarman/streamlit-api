@@ -216,7 +216,7 @@ elif 'file' in task:
 # -------------------------------------
 # Fig size
 fig_height = 600
-fig_width =600
+fig_width =650
 # Legend Setting
 domain = ['CH1', 'CH2']
 range_ = ['orange', 'deepskyblue']
