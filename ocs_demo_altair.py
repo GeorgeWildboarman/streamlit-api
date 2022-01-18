@@ -155,13 +155,12 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
 # Add radio to select task
 def task_desc_for_radio(task):
   if 'gen' in task:
-    return 'Wave from funcgen'
+    return 'Sine wavefrom'
   elif 'file' in task:
-    return 'wavefrom file'
+    return 'Oscillation waveform'
 
-task = fg_panel.radio("Select task", ('funcgen', 'wavefile'), 0, format_func=task_desc_for_radio, key='type')
-fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-fg_panel.write(task)
+task = fg_panel.radio("Item to display on the screen", ('funcgen', 'wavefile'), 0, format_func=task_desc_for_radio, key='type')
+# fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Create OSC Display
 main_dsp = st.container()
@@ -185,14 +184,14 @@ with col1:
   vol_ind_ch1 = st.selectbox('VOLTS/DIV (CH1)', dict_vol, 2)
   vol_per_div_ch1 = dict_vol.get(vol_ind_ch1)
   vol_per_point_ch1 = vol_per_div_ch1 / v_point_per_div
-  st.write(vol_per_div_ch1)
+#   st.write(vol_per_div_ch1)
 
 with col2:
 #   st.header('CH2')
   vol_ind_ch2 = st.selectbox('VOLTS/DIV (CH2)', dict_vol, 2)
   vol_per_div_ch2 = dict_vol.get(vol_ind_ch2)
   vol_per_point_ch2 = vol_per_div_ch2 / v_point_per_div
-  st.write(vol_per_div_ch2)
+#   st.write(vol_per_div_ch2)
   
 with col3:
 #   st.header('TIME')
