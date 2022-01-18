@@ -56,8 +56,13 @@ def read_waveform_file(filename='A0000CH1.CSV'):
 
   return df_waveform
 
+def task_desc_for_radio(task):
+  if 'gen' in task:
+    return 'Wave from funcgen'
+  elif 'file' in task:
+    return 'wavefrom file'
 
-task = st.radio("Select task", ('funcgen', 'wavefile'), 1, key='type')
+task = st.radio("Select task", ('funcgen', 'wavefile'), 1, format_func=task_desc_for_radio, key='type')
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
