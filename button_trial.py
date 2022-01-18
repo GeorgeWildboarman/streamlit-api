@@ -82,6 +82,7 @@ if 'gen' in task:
 elif 'file' in task:
   fq = np.nan
   amp =1
+  read_waveform_file(filename='A0000CH1.CSV'):
   st.write('task : file')
   
 st.write('freq:', fq)
