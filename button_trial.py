@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-def pnt_now(text=''):
+def pnt_now(text='Timestanp'):
   DIFF_JST_FROM_UTC = 9
   dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
   st.write(text,dt_now.strftime('%Y-%m-%d %H:%M:%S'))
@@ -22,7 +22,7 @@ def h_point_array(h_total_point):
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
-  pnt_now('test')
+  pnt_now()
 #   st.write('chash miss')
   
   df=pd.read_csv(filename, header=None)
