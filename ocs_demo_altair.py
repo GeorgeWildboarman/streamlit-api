@@ -260,6 +260,31 @@ xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
     )
 )    
 
+# Draw zoro lines
+h_offsett_ch1 = 0
+h_offsett_ch2 = 0
+zoro_line_width = 2
+v_zoro_line = alt.Chart(pd.DataFrame({'val':[0]})).mark_rule(
+    color = 'white', 
+).encode(
+    alt.X('val:Q',),
+    size=alt.value(zoro_line_width)
+)
+
+h_zoro_line_ch1 = alt.Chart(pd.DataFrame({'val':[h_offsett_ch1]})).mark_rule(
+    color = 'white', 
+).encode(
+    alt.Y('val:Q',),
+    size=alt.value(zoro_line_width)
+)
+
+h_zoro_line_ch2 = alt.Chart(pd.DataFrame({'val':[h_offsett_ch2]})).mark_rule(
+    color = 'white', 
+).encode(
+    alt.Y('val:Q',),
+    size=alt.value(zoro_line_width)
+)
+
 # Draw waveforms
 base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', 
@@ -319,6 +344,6 @@ text = alt.Chart(df_txt).mark_text(align='left', baseline='top', color='red').en
 )
 
 
-c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=fig_width, height=fig_height)
+c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text, v_zoro_line, h_zoro_line_ch1).configure(background='black').properties(width=fig_width, height=fig_height)
 main_dsp.altair_chart(c, use_container_width=False)
 
