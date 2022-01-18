@@ -58,7 +58,17 @@ def read_waveform_file(filename='A0000CH1.CSV'):
   return df_waveform
 
 def mmt_waveform(time_per_point=1.0e-6):
+  '''
+  Create pandas DF with 5 columns: t, v1, v2, label1, label2
+  t  : horizontal point in OCS display coordinate 
+  v1 : observed waveform
+  v2 : filled with Not a Number 
+  label1 : Norminal column for fig legend in Altair
+  label2 : Norminal column for fig legend in Altair
+  '''
+  # read waveform file obtained from OSC:DCS-4605 
   df_waveform = read_waveform_file(filename='A0000CH1.CSV')
+  # Arrange for display  
   df = pd.DataFrame({
       't':df_waveform['time[s]']/time_per_point, 
       'v1':df_waveform['volts[V]'], 
