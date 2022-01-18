@@ -57,6 +57,6 @@ def read_waveform_file(filename='A0000CH1.CSV'):
   return df_waveform
 
 
-task = st.radio("Select task", ('funcgen', 'wavefile'), 1, ('sssssssssssss','ffffffff'))
+task = st.radio("Select task", ('funcgen', 'wavefile'), 1, ['sssssssssssss','ffffffff'])
 
 
