@@ -275,7 +275,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
             title='CH1',
     ),color=alt.Color(
         'label1', 
-        legend=alt.Legend(title="", orient='none', legendX=h_total_point//2, legendY=5, fillColor='black', labelColor='white'), 
+        legend=alt.Legend(title="", orient='none', legendX=h_total_point, legendY=5, fillColor='black', labelColor='white'), 
         scale=alt.Scale(domain=domain, range=range_)
     ),
 ).transform_calculate(
