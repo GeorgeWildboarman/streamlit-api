@@ -6,7 +6,7 @@ def h_point_array(h_total_point):
   # horizontal points centering on zero
   return np.arange(-h_total_point//2, h_total_point//2)
 
-def read_waveform_file(filename='A0000CH1.CSV')
+def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
   df=pd.read_csv(filename, header=None)
