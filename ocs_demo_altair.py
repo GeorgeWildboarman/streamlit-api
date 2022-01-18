@@ -239,7 +239,6 @@ ygrid_lines = alt.Chart(pd_ygrid).mark_rule(color='white').encode(
                           gridDash=[2],
                           labels=False,
                           ticks=False,
-                          # tickMinStep=sub_grid_ticks,
                           tickCount=total_sub_ygrid,
             ), scale=alt.Scale(domain=ylim),
     )
@@ -259,7 +258,6 @@ xgrid_lines = alt.Chart(pd_xgrid).mark_rule(color='white').encode(
 )    
 
 # Draw waveforms
-# offset = 300
 base = alt.Chart(pd_wave).encode(
     x=alt.X('x:Q', 
 #           axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
@@ -277,7 +275,7 @@ line1 = base.mark_line(clip=True, color='orange').encode(
             title='CH1',
     ),color=alt.Color(
         'label1', 
-        legend=alt.Legend(title="", orient='none', legendX=500, legendY=5, fillColor='black', labelColor='white'), 
+        legend=alt.Legend(title="", orient='none', legendX=h_total_point//2, legendY=5, fillColor='black', labelColor='white'), 
         scale=alt.Scale(domain=domain, range=range_)
     ),
 ).transform_calculate(
@@ -316,6 +314,6 @@ text = alt.Chart(df_txt).mark_text(align='left', baseline='top', color='red').en
 )
 
 
-c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=600, height=600)
+c = alt.layer(line1, line2, xgrid_lines, ygrid_lines, text).configure(background='black').properties(width=650, height=600)
 main_dsp.altair_chart(c, use_container_width=False)
 
