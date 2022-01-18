@@ -77,7 +77,7 @@ fg_panel.write(task)
 
 if 'gen' in task:
   fq = fq_inp
-  amp = inp
+  amp = amp_inp
   st.write('task : funcgen')
 elif 'file' in task:
   fq = np.nan
