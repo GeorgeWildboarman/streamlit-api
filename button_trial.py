@@ -60,3 +60,5 @@ def read_waveform_file(filename='A0000CH1.CSV'):
 task = st.radio("Select task", ('funcgen', 'wavefile'), 1)
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
+st.write(task)
