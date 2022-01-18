@@ -159,16 +159,6 @@ task = fg_panel.radio("Select task", ('funcgen', 'wavefile'), 1, format_func=tas
 # fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 # fg_panel.write(task)
 
-if 'gen' in task:
-  fq = fq_inp
-  amp = amp_inp
-  st.write('task : funcgen')
-elif 'file' in task:
-#   fq = np.nan
-  fq = fq_inp
-  st.write('task : file')
-  amp =1
-
 # ------------------------------------------------------
 # # Create sidebar for FG front panel 
 # st.sidebar.title('Function Generator')
@@ -216,9 +206,23 @@ with col3:
   time_per_point = time_per_div / h_point_per_div
   st.write(time_per_div)
 
-# Generate wave function
-gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
-pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+# # Generate wave function
+# gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
+# pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+
+if 'gen' in task:
+  fq = fq_inp
+  amp = amp_inp
+  # Generate wave function
+  gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
+  pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+  st.write('task : funcgen')
+elif 'file' in task:
+  fq = np.nan
+#   fq = fq_inp
+  amp =1
+  pd_wave = mmt_waveform(time_per_point)
+  st.write('task : file')
 
 # -------------------------------------
 # Show fig as OSC Display
