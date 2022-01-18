@@ -2,14 +2,26 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+def pnt_now(text=''):
+  DIFF_JST_FROM_UTC = 9
+  dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
+  st.write(text,dt_now.strftime('%Y-%m-%d %H:%M:%S'))
+
+def strtime_now_jst():
+  DIFF_JST_FROM_UTC = 9
+  dt_now = datetime.datetime.utcnow() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
+  return dt_now.strftime('%Y-%m-%d %H:%M:%S')
+
 def h_point_array(h_total_point):
   # horizontal points centering on zero
   return np.arange(-h_total_point//2, h_total_point//2)
 
-@st.cache
+@st.cache(mutation=True)
 def read_waveform_file(filename='A0000CH1.CSV'):
   # Read waveform file into Pandas DataFrame
   # Waveform file format : csv
+  pnt_now()
+  
   df=pd.read_csv(filename, header=None)
 
   # Put the data into settup information and waveform
