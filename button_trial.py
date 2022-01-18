@@ -92,6 +92,8 @@ def mmt_waveform(time_per_point=1.0e-6):
       })
   return df
 
+# Statement of Changes in cache
+stmt = st.container()
   
 # Create sidbar to draw FG fromt panel
 fg_panel = st.sidebar
