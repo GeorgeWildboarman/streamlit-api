@@ -205,11 +205,11 @@ if 'gen' in task:
   amp = amp_inp
   # Generate wave function
   gain, theta = cal_gain_and_phase(fq, 0.01e-6, 6.8e3)
-  pd_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
+  pf_wave = sin_func_gen(fq, h_total_point, time_per_point, gain, theta)
 elif 'file' in task:
   fq = np.nan
   amp =1
-  pd_wave = mmt_waveform(time_per_point)
+  pf_wave = mmt_waveform(time_per_point)
 
 # -------------------------------------
 # Show fig as OSC Display
@@ -224,14 +224,14 @@ range_ = ['orange', 'deepskyblue']
 # Draw grid lines
 sub_grid_ticks = 5
 h_grid_val = np.linspace(*xlim, h_total_div+1, endpoint=True)
-pd_xgrid = pd.DataFrame({'val':h_grid_val})
+pf_xgrid = pd.DataFrame({'val':h_grid_val})
 total_sub_xgrid = h_total_div*sub_grid_ticks+1
 
 v_grid_val = np.linspace(*ylim, v_total_div+1, endpoint=True)
-pd_ygrid = pd.DataFrame({'val':v_grid_val})
+pf_ygrid = pd.DataFrame({'val':v_grid_val})
 total_sub_ygrid = v_total_div*sub_grid_ticks+1
 
-ygrid_lines = alt.Chart(pd_ygrid).mark_rule(color='white').encode(
+ygrid_lines = alt.Chart(pf_ygrid).mark_rule(color='white').encode(
     y=alt.Y('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
@@ -244,7 +244,7 @@ ygrid_lines = alt.Chart(pd_ygrid).mark_rule(color='white').encode(
     )
 )
 
-xgrid_lines = alt.Chart(pd_xgrid).mark_rule(color='white').encode(
+xgrid_lines = alt.Chart(pf_xgrid).mark_rule(color='white').encode(
     x=alt.X('val:Q',
             axis=alt.Axis(title=None,
                           grid=True,
@@ -258,7 +258,7 @@ xgrid_lines = alt.Chart(pd_xgrid).mark_rule(color='white').encode(
 )    
 
 # Draw waveforms
-base = alt.Chart(pd_wave).encode(
+base = alt.Chart(pf_wave).encode(
     x=alt.X('x:Q', 
 #           axis=alt.Axis(title=None, grid=False, labels=False, ticks=False), 
           scale=alt.Scale(domain=xlim), 
@@ -289,7 +289,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
             title='CH2', 
     ),color=alt.Color(
         'label2', 
-        legend=alt.Legend(title="", orient='none', legendX=500, legendY=20, fillColor='black', labelColor='white'),
+        legend=alt.Legend(title="", orient='none', legendX=h_total_point, legendY=20, fillColor='black', labelColor='white'),
         scale=alt.Scale(domain=domain, range=range_)
     )
 ).transform_calculate(
