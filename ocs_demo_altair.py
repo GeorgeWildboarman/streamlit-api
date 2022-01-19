@@ -155,9 +155,9 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
-    return format('Sine waveform', '<20')
+    return format('Sine waveform', '*^26')
   elif 'osc' in wave:
-    return format('Oscillation waveform', '<20')
+    return format('Oscillation waveform', '*^26')
 
 selected_wave = fg_panel.radio("Select waveform", ('sine', 'oscillation'), 0, format_func=format_selected_wave)
 # fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
@@ -334,11 +334,9 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
 info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}Frequency={:>7,} Hz'.format(vol_ind_ch1, vol_ind_ch2, time_ind, fq)
-df_txt.loc['info_1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
-
+df_txt.loc['scale']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 info = strtime_now_jst()
-df_txt.loc['info_2'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
-df_txt.loc['info_3'] = [xlim[1]-h_point_per_div*1.5, ylim[1]+v_point_per_div*.2, format_selected_wave(selected_wave)]
+df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
 df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
 
 text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
@@ -347,6 +345,15 @@ text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red')
     text='txt:N'
 )
 
+df_txt_r = pd.DataFrame(columns=['x', 'y', 'txt'])
+info = format_selected_wave(selected_wave)
+df_txt_r.loc['wave'] = [xlim[1]+h_point_per_div*.2, ylim[1]+v_point_per_div*.2, info]
+
+text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='red').encode(
+    alt.X('x:Q'),
+    alt.Y('y:Q'),
+    text='txt:N'
+)
 
 c = alt.layer(
   line1,
@@ -354,6 +361,7 @@ c = alt.layer(
   v_grid_lines,
   h_grid_lines,
   text,
+  text_r,
   v_zoro_line,
   h_zoro_line_ch1,
 ).configure(background='black').properties(width=fig_width, height=fig_height)
