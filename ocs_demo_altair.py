@@ -172,7 +172,8 @@ xlim = (-h_total_point//2, h_total_point//2)
 ylim = (-v_total_point//2, v_total_point//2)
 
 # Slider for horizontal position
-h_offset_div = st.slider('Horizontal Position [DIV]', -h_total_div//2, h_total_div//2, 0, 0.02) 
+h_offset_div = st.slider('Horizontal Position [DIV]', -5, 5, 0, 0.02) 
+# h_offset_div = st.slider('Horizontal Position [DIV]', -h_total_div//2, h_total_div//2, 0, 0.02) 
 h_offset = h_offset_div*h_point_per_div
 # number_input
 # h_offset = st.slider('Horizontal Position', *xlim, 0, 1) 
