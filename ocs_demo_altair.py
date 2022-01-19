@@ -155,9 +155,9 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
-    return format('Sine waveform', '*^26')
+    return format(' Sine waveform ', '*^26')
   elif 'osc' in wave:
-    return format('Oscillation waveform', '*^26')
+    return format(' Oscillation waveform ', '*^26')
 
 selected_wave = fg_panel.radio("Select waveform", ('sine', 'oscillation'), 0, format_func=format_selected_wave)
 # fg_panel.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
@@ -312,6 +312,8 @@ line1 = base.mark_line(clip=True, color='orange').encode(
         legend=alt.Legend(title="", orient='none', legendX=legendX, legendY=legendY, fillColor='black', labelColor='white'), 
         scale=alt.Scale(domain=domain, range=range_)
     ),
+).transform_filter(
+    'isValid(datum.v1)'
 ).transform_calculate(
     y=alt.datum.v1*amp/vol_per_point_ch1
 )
@@ -326,6 +328,8 @@ line2 = base.mark_line(clip=True, color='blue').encode(
         legend=alt.Legend(title="", orient='none', legendX=legendX, legendY=legendY+20, fillColor='black', labelColor='white'),
         scale=alt.Scale(domain=domain, range=range_)
     )
+).transform_filter(
+    'isValid(datum.v2)'
 ).transform_calculate(
     y=alt.datum.v2*amp/vol_per_point_ch2
 )    
