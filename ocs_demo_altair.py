@@ -149,8 +149,8 @@ fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
 # Add input to set freq and amp
-fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, step=10)
-amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2, step=1)
+fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000.0, step=100.0, format='%.f')
+amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='%.3f')
 
 # Add radio to select wave
 def format_selected_wave(wave):
@@ -172,8 +172,8 @@ xlim = (-h_total_point//2, h_total_point//2)
 ylim = (-v_total_point//2, v_total_point//2)
 
 # Slider for horizontal position
-# h_offset_div = st.number_input('Horizontal Position [DIV]', -h_total_div*.5, h_total_div*.5, 0.0, 1./h_point_per_div) 
-h_offset_div = st.slider('Horizontal Position [DIV]', -h_total_div*.5, h_total_div*.5, 0.0, 1./h_point_per_div) 
+# h_offset_div = st.number_input('Horizontal Position [DIV]', -h_total_div*.5, h_total_div*.5, 0.0, 1./h_point_per_div, '%.2f') 
+h_offset_div = st.slider('Horizontal Position [DIV]', -h_total_div*.5, h_total_div*.5, 0.0, 1./h_point_per_div, '%.2f') 
 h_offset = h_offset_div*h_point_per_div
 # h_offset = st.slider('Horizontal Position', *xlim, 0, 1, '') 
 
