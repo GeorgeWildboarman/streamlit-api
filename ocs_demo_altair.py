@@ -338,7 +338,7 @@ df_txt.loc['info_1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 
 info = strtime_now_jst()
 df_txt.loc['info_2'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
-df_txt.loc['info_3'] = [xlim[1]-h_point_per_div*.5, ylim[1]+v_point_per_div*.2, format_selected_wave(selected_wave)]
+df_txt.loc['info_3'] = [xlim[1]-h_point_per_div*1.5, ylim[1]+v_point_per_div*.2, format_selected_wave(selected_wave)]
 df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
 
 text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
