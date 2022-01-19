@@ -172,7 +172,9 @@ xlim = (-h_total_point//2, h_total_point//2)
 ylim = (-v_total_point//2, v_total_point//2)
 
 # Slider for horizontal position
-h_offset = st.slider('Horizontal Position', *xlim, 0, 1) 
+h_offset_div = st.slider('Horizontal Position [DIV]', *xlim/h_point_per_div, 0, 1/h_point_per_div) 
+h_offset = h_offset_div*h_point_per_div
+# h_offset = st.slider('Horizontal Position', *xlim, 0, 1) 
 
 # Create OSC ADJ Panel
 col1, col2, col3 = st.columns(3)
