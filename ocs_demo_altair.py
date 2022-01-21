@@ -153,7 +153,7 @@ fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
 # Add input to set freq and amp
-fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, max=100000, min=100, step=100, format='%d')
+fq_inp = fg_panel.number_input('Frequency [Hz]', min_value=100, max_value=100000, value=10000, step=100, format='%d')
 amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='%.3f')
 
 # Add radio to select wave
