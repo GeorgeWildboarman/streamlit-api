@@ -406,7 +406,7 @@ c = alt.layer(
   h_grid_lines,
   text_l,
   text_r,
-  text_c
+  text_c,
   v_zoro_line,
   h_zoro_line_ch1,
 ).configure(background='black').properties(width=fig_width, height=fig_height)
