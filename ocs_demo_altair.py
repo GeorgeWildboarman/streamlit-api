@@ -210,12 +210,12 @@ st.empty()
 desc_exp = st.container()
 if 'sine' in selected_wave:
     img1 = Image.open('img/Img_3-1.jpg')
-    img2 = Image.open('/img/Fig_3-1.png')
+    img2 = Image.open('img/Fig_3-1.png')
     desc_exp.image(img1, width=600)
     desc_exp.image(img2, width=600)
 elif 'osc' in selected_wave:
     img1 = Image.open('img/Img_3-2.jpg')
-    img2 = Image.open('/img/Fig_3-2.png')
+    img2 = Image.open('img/Fig_3-2.png')
     desc_exp.image(img1, width=600)
     desc_exp.image(img2, width=600)
 
