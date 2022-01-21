@@ -395,5 +395,5 @@ c = alt.layer(
   h_zoro_line_ch1,
 ).configure(background='black').properties(width=fig_width, height=fig_height)
 
-main_dsp.altair_chart(c, use_container_width=False)
+main_dsp.altair_chart(c, use_container_width=True)
 
