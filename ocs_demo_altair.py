@@ -378,7 +378,7 @@ df_txt_r = pd.DataFrame(columns=['x', 'y', 'txt'])
 info = format_selected_wave(selected_wave)
 df_txt_r.loc['wave'] = [xlim[1]+h_point_per_div*.2, ylim[1]+v_point_per_div*.2, info]
 info = 'Frequency={:>7,} Hz'.format(fq)
-df_txt_r.loc['wave'] = [xlim[1]-h_point_per_div*.2, ylim[0]-v_point_per_div*.2, info]
+df_txt_r.loc['fq'] = [xlim[1]-h_point_per_div*.2, ylim[0]+v_point_per_div*.2, info]
 
 text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='red').encode(
     alt.X('x:Q'),
