@@ -362,8 +362,10 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 # Write info on display
 df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
-info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, vol_ind_ch2, time_ind)
-df_txt.loc['scale']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
+info = 'CH1 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
+df_txt.loc['scale1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
+info = 'CH2 VOLTS/DIV={:<8}'.format(vol_ind_ch2)
+df_txt.loc['scale2']= [xlim[0], ylim[0]-v_point_per_div*1.4, info]
 info = strtime_now_jst()
 df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
 df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
