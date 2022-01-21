@@ -153,7 +153,7 @@ fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
 # Add input to set freq and amp
-fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, step=100, format='%d')
+fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, max=100000, min=100, step=100, format='%d')
 amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='%.3f')
 
 # Add radio to select wave
@@ -363,13 +363,11 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
 info = 'CH1 VOLTS/DIV={:<8}'.format(vol_ind_ch1)
-# info = 'CH1 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
 df_txt.loc['scale1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 info = 'CH2 VOLTS/DIV={:<8}'.format(vol_ind_ch2)
 df_txt.loc['scale2']= [xlim[0], ylim[0]-v_point_per_div*.5, info]
 info = strtime_now_jst()
 df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
-# df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
 
 text_l = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
     alt.X('x:Q'),
@@ -391,7 +389,7 @@ text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='
 )
 
 df_txt_c = pd.DataFrame(columns=['x', 'y', 'txt'])
-info = 'TIME/DIV={:<6}'.format(vol_ind_ch1, time_ind)
+info = 'TIME/DIV={:<6}'.format(time_ind)
 df_txt_c.loc['scaleT']= [0, ylim[0]-v_point_per_div*.2, info]
 text_c = alt.Chart(df_txt_c).mark_text(align='center', baseline='middle', color='red').encode(
     alt.X('x:Q'),
