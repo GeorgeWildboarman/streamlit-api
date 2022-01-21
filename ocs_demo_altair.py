@@ -362,15 +362,16 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 # Write info on display
 df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
-info = 'CH1 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
+info = 'CH1 VOLTS/DIV={:<8}'.format(vol_ind_ch1)
+# info = 'CH1 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
 df_txt.loc['scale1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 info = 'CH2 VOLTS/DIV={:<8}'.format(vol_ind_ch2)
 df_txt.loc['scale2']= [xlim[0], ylim[0]-v_point_per_div*.5, info]
 info = strtime_now_jst()
 df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
-df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
+# df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
 
-text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
+text_l = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
     alt.X('x:Q'),
     alt.Y('y:Q'),
     text='txt:N'
@@ -381,8 +382,18 @@ info = format_selected_wave(selected_wave)
 df_txt_r.loc['wave'] = [xlim[1]+h_point_per_div*.2, ylim[1]+v_point_per_div*.2, info]
 info = 'Frequency={:>7,} Hz'.format(fq)
 df_txt_r.loc['fq'] = [xlim[1]-h_point_per_div*.2, ylim[0]-v_point_per_div*.2, info]
+df_txt.loc['v_zero_point'] = [xlim[0], 0, '0>']
 
 text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='red').encode(
+    alt.X('x:Q'),
+    alt.Y('y:Q'),
+    text='txt:N'
+)
+
+df_txt_c = pd.DataFrame(columns=['x', 'y', 'txt'])
+info = 'TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
+df_txt.loc['scaleT']= [0, ylim[0]-v_point_per_div*.2, info]
+text_c = alt.Chart(df_txt_c).mark_text(align='center', baseline='middle', color='red').encode(
     alt.X('x:Q'),
     alt.Y('y:Q'),
     text='txt:N'
@@ -393,8 +404,9 @@ c = alt.layer(
   line2,
   v_grid_lines,
   h_grid_lines,
-  text,
+  text_l,
   text_r,
+  text_c
   v_zoro_line,
   h_zoro_line_ch1,
 ).configure(background='black').properties(width=fig_width, height=fig_height)
