@@ -156,10 +156,6 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
-#     img = Image.open('/img/Fig_3-1.png')
-    img = Image.open('img/Img_3-1.jpg')
-    exp_img = st.container()
-#     exp_img.image(img, width=600)
     return format(' Sine waveform ', '*^26')
   elif 'osc' in wave:
     return format(' Oscillation waveform ', '*^26')
@@ -208,6 +204,22 @@ with col3:
   time_per_point = time_per_div / h_point_per_div
 #   st.write(time_per_div)
 
+st.empty()
+
+# Description of the experiments
+desc_exp = st.container()
+if 'sine' in selected_wave:
+    img1 = Image.open('img/Img_3-1.jpg')
+    img2 = Image.open('/img/Fig_3-1.png')
+    desc_exp.image(img1, width=600)
+    desc_exp.image(img2, width=600)
+elif 'osc' in selected_wave:
+    img1 = Image.open('img/Img_3-2.jpg')
+    img2 = Image.open('/img/Fig_3-2.png')
+    desc_exp.image(img1, width=600)
+    desc_exp.image(img2, width=600)
+
+# Generate waveforms
 if 'sine' in selected_wave:
   fq = fq_inp
   amp = amp_inp
