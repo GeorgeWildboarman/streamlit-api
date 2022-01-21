@@ -159,7 +159,7 @@ def format_selected_wave(wave):
 #     img = Image.open('/img/Fig_3-1.png')
     img = Image.open('img/Img_3-1.jpg')
     exp_img = st.container()
-    exp_img.image(img, width=600)
+#     exp_img.image(img, width=600)
     return format(' Sine waveform ', '*^26')
   elif 'osc' in wave:
     return format(' Oscillation waveform ', '*^26')
