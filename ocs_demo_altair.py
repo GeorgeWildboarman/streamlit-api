@@ -153,9 +153,9 @@ fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
 # Add input to set freq and amp
-fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000.0, step=100.0, format='%.f')
+fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000, step=100, format='%d')
 amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='%.3f')
-# Frequency={:>7,} Hz'.format(fq)
+
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
