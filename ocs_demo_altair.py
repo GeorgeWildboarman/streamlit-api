@@ -145,8 +145,8 @@ v_total_div = 8
 v_total_point = v_point_per_div * v_total_div
 
 # Fig size
-fig_height = 500
-fig_width = 500
+fig_height = 600
+fig_width = 640
 
 # Create sidbar to draw FG fromt panel
 fg_panel = st.sidebar
