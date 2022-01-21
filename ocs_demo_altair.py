@@ -1,7 +1,7 @@
 import datetime
 import numpy as np
 import pandas as pd
-import PIL as Image
+from PIL import Image
 import streamlit as st
 import altair as alt
 
