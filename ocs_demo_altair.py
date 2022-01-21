@@ -157,7 +157,7 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='
 def format_selected_wave(wave):
   if 'sine' in wave:
 #     img = Image.open('/img/Fig_3-1.png')
-    img = Image.open('/img/Img_3-1.jpg')
+    img = Image.open('img/Img_3-1.jpg')
 #     st.img(image, width=600)
     return format(' Sine waveform ', '*^26')
   elif 'osc' in wave:
