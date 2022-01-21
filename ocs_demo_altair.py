@@ -155,7 +155,7 @@ fg_panel.title('Function Generator')
 # Add input to set freq and amp
 fq_inp = fg_panel.number_input('Frequency [Hz]', value=10000.0, step=100.0, format='%.f')
 amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='%.3f')
-
+# Frequency={:>7,} Hz'.format(fq)
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
@@ -382,7 +382,7 @@ info = format_selected_wave(selected_wave)
 df_txt_r.loc['wave'] = [xlim[1]+h_point_per_div*.2, ylim[1]+v_point_per_div*.2, info]
 info = 'Frequency={:>7,} Hz'.format(fq)
 df_txt_r.loc['fq'] = [xlim[1]-h_point_per_div*.2, ylim[0]-v_point_per_div*.2, info]
-df_txt.loc['v_zero_point'] = [xlim[0], 0, '0>']
+df_txt_r.loc['v_zero_point'] = [xlim[0], 0, '0>']
 
 text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='red').encode(
     alt.X('x:Q'),
@@ -391,8 +391,8 @@ text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='
 )
 
 df_txt_c = pd.DataFrame(columns=['x', 'y', 'txt'])
-info = 'TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
-df_txt.loc['scaleT']= [0, ylim[0]-v_point_per_div*.2, info]
+info = 'TIME/DIV={:<6}'.format(vol_ind_ch1, time_ind)
+df_txt_c.loc['scaleT']= [0, ylim[0]-v_point_per_div*.2, info]
 text_c = alt.Chart(df_txt_c).mark_text(align='center', baseline='middle', color='red').encode(
     alt.X('x:Q'),
     alt.Y('y:Q'),
