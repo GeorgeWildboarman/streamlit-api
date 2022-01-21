@@ -144,6 +144,9 @@ v_point_per_div = 50
 v_total_div = 8
 v_total_point = v_point_per_div * v_total_div
 
+# Fig size
+fig_height = 600
+fig_width =650
 
 # Create sidbar to draw FG fromt panel
 fg_panel = st.sidebar
@@ -215,14 +218,14 @@ if 'sine' in selected_wave:
   desc_exp.write('Experiment 1')
   img1 = Image.open('img/Img_3-1.jpg')
   img2 = Image.open('img/Fig_3-1.png')
-  desc_exp.image(img1, width=600)
-  desc_exp.image(img2, width=600)
+  desc_exp.image(img1, width=fig_width)
+  desc_exp.image(img2, width=fig_width)
 elif 'osc' in selected_wave:
   desc_exp.write('Experiment 2')
   img1 = Image.open('img/Img_3-2.jpg')
   img2 = Image.open('img/Fig_3-2.png')
-  desc_exp.image(img1, width=600)
-  desc_exp.image(img2, width=600)
+  desc_exp.image(img1, width=fig_width)
+  desc_exp.image(img2, width=fig_width)
 
 # Generate waveforms
 if 'sine' in selected_wave:
@@ -239,9 +242,6 @@ elif 'osc' in selected_wave:
 # -------------------------------------
 # Show fig as OSC Display
 # -------------------------------------
-# Fig size
-fig_height = 600
-fig_width =650
 # Legend Setting
 domain = ['CH1', 'CH2']
 range_ = ['orange', 'deepskyblue']
@@ -362,7 +362,7 @@ line2 = base.mark_line(clip=True, color='blue').encode(
 # Write info on display
 df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 
-info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}Frequency={:>7,} Hz'.format(vol_ind_ch1, vol_ind_ch2, time_ind, fq)
+info = 'CH1 VOLTS/DIV={:<8}CH2 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, vol_ind_ch2, time_ind)
 df_txt.loc['scale']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 info = strtime_now_jst()
 df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
@@ -377,6 +377,8 @@ text = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red')
 df_txt_r = pd.DataFrame(columns=['x', 'y', 'txt'])
 info = format_selected_wave(selected_wave)
 df_txt_r.loc['wave'] = [xlim[1]+h_point_per_div*.2, ylim[1]+v_point_per_div*.2, info]
+info = 'Frequency={:>7,} Hz'.format(fq)
+df_txt_r.loc['wave'] = [xlim[1]-h_point_per_div*.2, ylim[0]-v_point_per_div*.2, info]
 
 text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='red').encode(
     alt.X('x:Q'),
@@ -395,5 +397,5 @@ c = alt.layer(
   h_zoro_line_ch1,
 ).configure(background='black').properties(width=fig_width, height=fig_height)
 
-main_dsp.altair_chart(c, use_container_width=True)
+main_dsp.altair_chart(c, use_container_width=False)
 
