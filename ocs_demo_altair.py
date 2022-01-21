@@ -1,7 +1,7 @@
 import datetime
 import numpy as np
 import pandas as pd
-from PIL import Image
+# from PIL import Image
 import streamlit as st
 import altair as alt
 
@@ -156,7 +156,7 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
-    fig = Image.open('/img/Fig_3-1.png')
+#     fig = Image.open('/img/Fig_3-1.png')
 #     image = Image.open('/img/Img_3-1.jpg')
 #     st.image(image, width=600)
     return format(' Sine waveform ', '*^26')
