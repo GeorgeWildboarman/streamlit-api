@@ -204,20 +204,25 @@ with col3:
   time_per_point = time_per_div / h_point_per_div
 #   st.write(time_per_div)
 
-st.empty()
-
 # Description of the experiments
 desc_exp = st.container()
+desc_exp.header('''
+
+Descritption:
+''')
+
 if 'sine' in selected_wave:
-    img1 = Image.open('img/Img_3-1.jpg')
-    img2 = Image.open('img/Fig_3-1.png')
-    desc_exp.image(img1, width=600)
-    desc_exp.image(img2, width=600)
+  desc_exp.write('Experiment 1')
+  img1 = Image.open('img/Img_3-1.jpg')
+  img2 = Image.open('img/Fig_3-1.png')
+  desc_exp.image(img1, width=600)
+  desc_exp.image(img2, width=600)
 elif 'osc' in selected_wave:
-    img1 = Image.open('img/Img_3-2.jpg')
-    img2 = Image.open('img/Fig_3-2.png')
-    desc_exp.image(img1, width=600)
-    desc_exp.image(img2, width=600)
+  desc_exp.write('Experiment 2')
+  img1 = Image.open('img/Img_3-2.jpg')
+  img2 = Image.open('img/Fig_3-2.png')
+  desc_exp.image(img1, width=600)
+  desc_exp.image(img2, width=600)
 
 # Generate waveforms
 if 'sine' in selected_wave:
