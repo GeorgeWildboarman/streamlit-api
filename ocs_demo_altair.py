@@ -220,6 +220,9 @@ if 'sine' in selected_wave:
   img2 = Image.open('img/Fig_3-1.png')
   desc_exp.image(img1, width=fig_width)
   desc_exp.image(img2, width=fig_width)
+  desc_exp.write('''
+  Frequency [Hz]: 10k, 8k, 7k, 6k, 5k, 4k, 3k, 2k, 1k, 800, 700, 600, 500
+  ''')
 elif 'osc' in selected_wave:
   desc_exp.write('Experiment 2')
   img1 = Image.open('img/Img_3-2.jpg')
@@ -389,6 +392,7 @@ text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='
 )
 
 df_txt_c = pd.DataFrame(columns=['x', 'y', 'txt'])
+df_txt_c.loc['annotation']= [0, ylim[1]+v_point_per_div*.2, 'SAMPLE']
 info = 'TIME/DIV={:<6}'.format(time_ind)
 df_txt_c.loc['scaleT']= [0, ylim[0]-v_point_per_div*.2, info]
 text_c = alt.Chart(df_txt_c).mark_text(align='center', baseline='middle', color='red').encode(
