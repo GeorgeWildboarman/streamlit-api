@@ -365,7 +365,7 @@ df_txt = pd.DataFrame(columns=['x', 'y', 'txt'])
 info = 'CH1 VOLTS/DIV={:<8}TIME/DIV={:<14}'.format(vol_ind_ch1, time_ind)
 df_txt.loc['scale1']= [xlim[0], ylim[0]-v_point_per_div*.2, info]
 info = 'CH2 VOLTS/DIV={:<8}'.format(vol_ind_ch2)
-df_txt.loc['scale2']= [xlim[0], ylim[0]-v_point_per_div*1.4, info]
+df_txt.loc['scale2']= [xlim[0], ylim[0]-v_point_per_div*.6, info]
 info = strtime_now_jst()
 df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
 df_txt.loc['v_zero_point'] = [xlim[0]-h_point_per_div*.3, 0, '0>']
@@ -380,7 +380,7 @@ df_txt_r = pd.DataFrame(columns=['x', 'y', 'txt'])
 info = format_selected_wave(selected_wave)
 df_txt_r.loc['wave'] = [xlim[1]+h_point_per_div*.2, ylim[1]+v_point_per_div*.2, info]
 info = 'Frequency={:>7,} Hz'.format(fq)
-df_txt_r.loc['fq'] = [xlim[1]-h_point_per_div*.2, ylim[0]+v_point_per_div*.2, info]
+df_txt_r.loc['fq'] = [xlim[1]-h_point_per_div*.2, ylim[0]-v_point_per_div*.2, info]
 
 text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='red').encode(
     alt.X('x:Q'),
