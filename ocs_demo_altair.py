@@ -156,9 +156,9 @@ amp_inp = fg_panel.number_input('Amp Voltage [V]', value=2.0, step=1.0, format='
 # Add radio to select wave
 def format_selected_wave(wave):
   if 'sine' in wave:
-#     fig = Image.open('/img/Fig_3-1.png')
-    image = Image.open('/img/Img_3-1.jpg')
-    st.image(image, width=600)
+    fig = Image.open('/img/Fig_3-1.png')
+#     image = Image.open('/img/Img_3-1.jpg')
+#     st.image(image, width=600)
     return format(' Sine waveform ', '*^26')
   elif 'osc' in wave:
     return format(' Oscillation waveform ', '*^26')
