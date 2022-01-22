@@ -1,7 +1,11 @@
 import os
+import socket
 import streamlit as st
 
 st.write('Hello Streamlit again!!!')
-st.write('日本語は使えますか？')
+hostname = socket.gethostname()
+ip = socket.gethostbyname(hostname)
+
+st.write(hostname,ip)
 
 st.write(dict(os.environ))
