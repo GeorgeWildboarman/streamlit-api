@@ -4,6 +4,8 @@ import streamlit as st
 import streamlit as st
 import streamlit.components.v1 as components
 
+st config show
+
 st.set_page_config(
      page_title="Hello Streamlit App",
      page_icon="🧊",
