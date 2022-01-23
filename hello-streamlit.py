@@ -10,4 +10,4 @@ st.write(hostname,ip)
 
 # st.write(dict(os.environ))
 
-print('hello<br>hello<br>')
+st.write('hello<br>hello<br>')
