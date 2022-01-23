@@ -64,7 +64,7 @@ components.html(
 
     </body>
     </html>
-    '''
+''', height=600
 )
 
 st.write('Hello Streamlit again!!!')
