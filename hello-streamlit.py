@@ -36,6 +36,8 @@ components.html(
             document.write('Javascript for geolocation check<br><br>')
             var useragent = window.navigator.userAgent;
             document.write(useragent+'<br><br>');
+            document.write('Screen width:'+window.screen.width+'<br>');
+            document.write('Screen height:'+window.screen.height+'<br><br>');
 
             function show_islocationenabled() {
                 console.log(window.navigator.geolocation)
