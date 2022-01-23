@@ -65,6 +65,8 @@ components.html(
     </body>
     </html>
     '''
+)
+
 st.write('Hello Streamlit again!!!')
 hostname = socket.gethostname()
 ip = socket.gethostbyname(hostname)
