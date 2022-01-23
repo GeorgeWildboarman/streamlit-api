@@ -8,4 +8,6 @@ ip = socket.gethostbyname(hostname)
 
 st.write(hostname,ip)
 
-st.write(dict(os.environ))
+# st.write(dict(os.environ))
+
+print('hello<br>hello<br>')
