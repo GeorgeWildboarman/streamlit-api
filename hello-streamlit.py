@@ -16,7 +16,7 @@ st.set_page_config(
      }
  )
 
-comp = components.html(
+components.html(
 '''
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@ comp = components.html(
         <title>Geolocation example: Checking for geolocation support</title>
         <meta charset="utf-8"; content="text/javascript">
     </head>
-    <body>
+    <body bgcolor="silver">
         <h1>Hello, This site is to check for geolocation support</h1>
         <p>
             <input type="button" onclick="show_islocationenabled();" value="Is Geolocation supported?" />
