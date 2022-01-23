@@ -7,7 +7,7 @@ import streamlit.components.v1 as components
 st.set_page_config(
      page_title="Hello Streamlit App",
      page_icon="🧊",
-     layout="center",
+     layout="centered",
      initial_sidebar_state="expanded",
      menu_items={
          'Get Help': 'https://www.extremelycoolapp.com/help',
