@@ -210,19 +210,19 @@ with col3:
 #   st.write(time_per_div)
 
 # Description of the experiments
-desc_exp = st.container(width=650)
+desc_exp = st.container()
 desc_exp.header('''
 
 Descritption:
 ''')
 
 if 'sine' in selected_wave:
-  desc_exp.write('CR移相回路の周波数特性の測定')
+  desc_exp.subheader('CR移相回路の周波数特性の測定')
   img1 = Image.open('img/Img_3-1.jpg')
   img2 = Image.open('img/Fig_3-1.png')
   desc_exp.image(img1, width=fig_width)
   desc_exp.image(img2, width=fig_width)
-  desc_exp.write('''
+  desc_exp.caption('''
   3)ファンクションジェネレータの出力を実験用CR移相回路の入力に加え，その電圧信号をオシロスコープのCH1で観測する．実験用CR移相回路の出力はオシロスコープのCH2で観測する．この際，CH1とCH2の電圧信号の波形が同時に見やすく観測できるようにすること．
   振幅: 2V
   周波数: 10kHz，8kHz，6kHz，5kHz，4kHz，3kHz，2kHz，1kHz, 800Hz，600Hz，500Hz
