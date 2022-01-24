@@ -229,7 +229,7 @@ if 'sine' in selected_wave:
   波形: 正弦波
   振幅: 2V
   周波数: <b>10kHz，8kHz，6kHz，5kHz，4kHz，3kHz，2kHz，1kHz, 800Hz，600Hz，500Hz</b>
-  ''')
+  ''', unsafe_allow_html=True)
 elif 'osc' in selected_wave:
   desc_exp.subheader('CR移相型発振回路の発振周波数の測定')
   img1 = Image.open('img/Img_3-2.jpg')
@@ -240,7 +240,7 @@ elif 'osc' in selected_wave:
   実験用CR移相型発振回路に直流9Vを印加し，オシロスコープで回路の出力波形を観測する．<br>
   画面に描かれた波形は，実験用CR移相型発振回路から出力された発振波形である．<br>
   測定がしやすいように，横軸と縦軸のスケールを調整して描画すること．<br>
-  '''unsafe_allow_html=True)
+  ''', unsafe_allow_html=True)
 
 # Generate waveforms
 if 'sine' in selected_wave:
