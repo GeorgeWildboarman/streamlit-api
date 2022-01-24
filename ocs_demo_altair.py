@@ -222,7 +222,7 @@ if 'sine' in selected_wave:
   img2 = Image.open('img/Fig_3-1.png')
   desc_exp.image(img1, width=fig_width)
   desc_exp.image(img2, width=fig_width)
-  desc_exp.caption('''
+  desc_exp.markdown('''
   FGの出力を実験用CR移相回路の入力に加え，その電圧信号をオシロスコープのCH1で観測する．出力はオシロスコープのCH2で観測する．<br>
   CH1とCH2の信号を測定しやすいように，横軸と縦軸のスケールを調整して描画すること．<br>
   FGから以下の波形を出力させ，画像を作成する．<br><br>
