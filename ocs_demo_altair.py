@@ -223,16 +223,25 @@ if 'sine' in selected_wave:
   desc_exp.image(img1, width=fig_width)
   desc_exp.image(img2, width=fig_width)
   desc_exp.caption('''
-  3)ファンクションジェネレータの出力を実験用CR移相回路の入力に加え，その電圧信号をオシロスコープのCH1で観測する．実験用CR移相回路の出力はオシロスコープのCH2で観測する．この際，CH1とCH2の電圧信号の波形が同時に見やすく観測できるようにすること．
+  FGの出力を実験用CR移相回路の入力に加え，その電圧信号をオシロスコープのCH1で観測する．出力はオシロスコープのCH2で観測する．
+  CH1とCH2の信号を測定しやすいように，横軸と縦軸のスケールを調整して描画すること．
+  
+  FGから以下の波形を出力させ，画像を作成する．
+  波形: 正弦波
   振幅: 2V
   周波数: 10kHz，8kHz，6kHz，5kHz，4kHz，3kHz，2kHz，1kHz, 800Hz，600Hz，500Hz
   ''')
 elif 'osc' in selected_wave:
-  desc_exp.write('Experiment 2')
+  desc_exp.subheader('CR移相型発振回路の発振周波数の測定')
   img1 = Image.open('img/Img_3-2.jpg')
   img2 = Image.open('img/Fig_3-2.png')
   desc_exp.image(img1, width=fig_width)
   desc_exp.image(img2, width=fig_width)
+  desc_exp.caption('''
+  実験用CR移相型発振回路に直流9Vを印加し，オシロスコープで回路の出力波形を観測する．
+  画面に描かれた波形は，実験用CR移相型発振回路から出力された発振波形である．
+  測定がしやすいように，横軸と縦軸のスケールを調整して描画すること．
+  ''')
 
 # Generate waveforms
 if 'sine' in selected_wave:
