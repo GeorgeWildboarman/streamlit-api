@@ -236,11 +236,11 @@ elif 'osc' in selected_wave:
   img2 = Image.open('img/Fig_3-2.png')
   desc_exp.image(img1, width=fig_width)
   desc_exp.image(img2, width=fig_width)
-  desc_exp.caption('''
+  desc_exp.markdown('''
   実験用CR移相型発振回路に直流9Vを印加し，オシロスコープで回路の出力波形を観測する．<br>
   画面に描かれた波形は，実験用CR移相型発振回路から出力された発振波形である．<br>
   測定がしやすいように，横軸と縦軸のスケールを調整して描画すること．<br>
-  ''')
+  '''unsafe_allow_html=True)
 
 # Generate waveforms
 if 'sine' in selected_wave:
