@@ -134,6 +134,8 @@ def div_vals():
               }
   return dict_vol, dict_time
 
+st.set_page_config(initial_sidebar_state='expanded')
+
 # Config horizontal axis for OCS
 h_point_per_div = 50
 h_total_div = 10
@@ -148,7 +150,7 @@ v_total_point = v_point_per_div * v_total_div
 fig_height = 600
 fig_width = 640
 
-# Create sidbar to draw FG fromt panel
+# Create sidebar to draw FG fromt panel
 fg_panel = st.sidebar
 fg_panel.title('Function Generator')
 
