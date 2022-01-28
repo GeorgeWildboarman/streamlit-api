@@ -404,7 +404,7 @@ text_r = alt.Chart(df_txt_r).mark_text(align='right', baseline='middle', color='
 )
 
 df_txt_c = pd.DataFrame(columns=['x', 'y', 'txt'])
-df_txt_c.loc['annotation']= [0, ylim[1]+v_point_per_div*.2, 'SAMPLE']
+# df_txt_c.loc['annotation']= [0, ylim[1]+v_point_per_div*.2, 'SAMPLE']
 info = 'TIME/DIV={:<6}'.format(time_ind)
 df_txt_c.loc['scaleT']= [0, ylim[0]-v_point_per_div*.2, info]
 text_c = alt.Chart(df_txt_c).mark_text(align='center', baseline='middle', color='red').encode(
