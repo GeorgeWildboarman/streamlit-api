@@ -384,7 +384,7 @@ df_txt.loc['scale2']= [xlim[0], ylim[0]-v_point_per_div*.5, info]
 info = strtime_now_jst()
 df_txt.loc['time'] = [xlim[0], ylim[1]+v_point_per_div*.2, info]
 
-text_l = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red').encode(
+text_l = alt.Chart(df_txt).mark_text(align='left', baseline='middle', color='red', fillColor='black').encode(
     alt.X('x:Q'),
     alt.Y('y:Q'),
     text='txt:N'
